@@ -34,13 +34,13 @@ class INV extends CI_Controller {
 
     function cetak_inv($inv)  {
         $header_data = $this->inv->cetak_inv($inv)->result();
-        // $detail_data = $this->so->cetak_so_detail($so)->result();
+        $detail_data = $this->inv->det_inv($inv)->result();
         $name = !empty($header_data) && isset($header_data[0]->number) ? $header_data[0]->number : $inv;
         // $name = '123';
         $data = [
             'title' => $name,
             'header_inv' => $header_data,
-            // 'det_so' => $detail_data,
+            'det_inv' => $detail_data,
         ];
         // $name = $so;
         $this->load->library('pdf');

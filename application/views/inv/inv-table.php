@@ -16,9 +16,9 @@
             <tr>
                 <td><?= $x++; ?></td>
                 <td><?= $row->number ?></td>
-                <td>Customer</td>
-                <td>Sales</td>
-                <td>Payment Terms</td>
+                <td><?= $row->nama_cus ?></td>
+                <td><?= $row->nama_sales ?></td>
+                <td><?= $row->termin ?></td>
                 <td>
                 <a href="<?= base_url('index.php/INV/cetak_inv/'.$row->id) ?>" target="_new" type="button" class="btn btn-primary" title="cetak Invoice "><i class="fa fa-print"></i></a>
                 </td>

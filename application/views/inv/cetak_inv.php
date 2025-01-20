@@ -10,6 +10,10 @@ foreach ($header_inv as $row) {
     $due_date = $row->date_due;
     $no_sj = $row->no_sjk;
     $npwp = $row->x_npwp;
+    $bruto = $row->bruto;
+    $dpp_lain = 11/12 * $bruto;
+    $ppn12 = $dpp_lain * 12/100;
+    $netto = $bruto + $ppn12;
 }
 ?>
 
@@ -225,13 +229,18 @@ foreach ($header_inv as $row) {
                     <td width="13%" align="center"><strong>Unit Price</strong></td>
                     <td width="18%" align="center"><strong>Net Price</strong></td>
                 </tr>
-                <tr>
-                    <td>1.</td>
-                    <td>STICKER MINYAK VIOLA 750 ML DESAIN AGUSTUS 2024</td>
-                    <td align="right">19.500,00 pcs</td>
-                    <td align="right">Rp 49,15</td>
-                    <td align="right">Rp 1.054.170,00</td>
-                </tr>
+                <?php 
+                $x=1;
+                foreach ($det_inv as $row) { ?>
+                    
+                    <tr>
+                        <td><?= $x++; ?></td>
+                        <td><?= $row->name ?></td>
+                        <td align="right"><?= number_format($row->quantity) ?> pcs</td>
+                        <td align="right">Rp <?= number_format($row->price_unit,2) ?></td>
+                        <td align="right">Rp <?= number_format($row->price_subtotal,2) ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
 
@@ -239,7 +248,7 @@ foreach ($header_inv as $row) {
             <tbody>
                 <tr>
                     <td>Bruto</td>
-                    <td>Rp 1.054.170,00</td>
+                    <td>Rp <?= number_format($bruto, 2) ?></td>
                 </tr>
                 <tr>
                     <td>Diskon</td>
@@ -247,15 +256,15 @@ foreach ($header_inv as $row) {
                 </tr>
                 <tr>
                     <td>DPP Nilai Lain</td>
-                    <td>Rp 1.054.170,00</td>
+                    <td>Rp <?= number_format($dpp_lain,2) ?></td>
                 </tr>
                 <tr>
                     <td>PPN 12%</td>
-                    <td>Rp 115.958,70</td>
+                    <td>Rp <?= number_format($ppn12,2) ?></td>
                 </tr>
                 <tr>
                     <td>Netto</td>
-                    <td>Rp 1.170.128,70</td>
+                    <td>Rp <?= number_format($netto,2) ?></td>
                 </tr>
             </tbody>
         </table>

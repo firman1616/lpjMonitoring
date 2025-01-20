@@ -19,9 +19,17 @@ class M_INV extends CI_Model
         ai.amount_tax,
         ai.origin,
         ai.payment_term_id,
-        ai.amount_total
+        ai.amount_total,
+        ai.user_id, 
+        rp.name as nama_cus,
+        rp2.name as nama_sales,
+        apt.name as termin
       from
         account_invoice ai
+      left join res_partner rp on rp.id = ai.partner_id 
+      left join res_users ru on ru.id = ai.user_id
+      left join res_partner rp2 on rp2.id = ru.partner_id 
+      left join account_payment_term apt on apt.id = ai.payment_term_id 
       where
         number like '%INV%' and
       ai.create_date BETWEEN NOW() - INTERVAL '12 months' AND NOW() order by ai.number desc");
@@ -41,7 +49,9 @@ class M_INV extends CI_Model
       rp.street,
       apt.name as payment_term,
       sp.name as no_sjk,
-      so.x_po_cust 
+      so.x_po_cust,
+      ai.amount_untaxed as bruto,
+      ai.amount_tax 
     from
       account_invoice ai
     left join res_partner rp on rp.id = ai.partner_id
@@ -52,25 +62,17 @@ class M_INV extends CI_Model
       number like '%INV%' and ai.id = '$inv'");
   }
 
-  // function cetak_so_detail($so) {
-  //   return $this->db->query("SELECT
-  //     sol.name as produk_name,
-  //     sol.product_id,
-  //     sol.product_uom_qty,
-  //     sol.x_duedate_kirim,
-  //     sol.price_unit,
-  //     sol.discount,
-  //     pp.default_code
-  //   from
-  //     sale_order_line sol
-  //   left join product_product pp on pp.id = sol.product_id 
-  //   where
-  //     order_id = '$so'");
-  // }
-
-  // function cetak_harga($so)  {
-  //   return $this->db->query()
-  // }
+  function det_inv($inv) {
+    return $this->db->query("SELECT
+      name,
+      quantity,
+      price_unit,
+      price_subtotal
+    from
+      account_invoice_line ail
+    where
+      invoice_id = '$inv'");
+  }
 
   
 }
