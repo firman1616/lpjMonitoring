@@ -45,6 +45,6 @@ class SO extends CI_Controller {
         $this->load->library('pdf');
         // $this->load->view('po/print-po', $data, TRUE);s
         $html = $this->load->view('so/cetak_so', $data, TRUE);
-        $this->pdf->createPDF($html, $name, false);
+        $this->pdf->createPDF($html, $name);
     }
 }

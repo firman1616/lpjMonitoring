@@ -45,6 +45,6 @@ class INV extends CI_Controller {
         // $name = $so;
         $this->load->library('pdf');
         $html = $this->load->view('inv/cetak_inv', $data, TRUE);
-        $this->pdf->createPDF($html, $name, false);
+        $this->pdf->createPDF($html, $name);
     }
 }
