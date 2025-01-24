@@ -50,6 +50,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?= site_url('index.php/SO') ?>">Cetakan SO</a>
                         <a class="collapse-item" href="<?= site_url('index.php/INV') ?>">Cetakan Invoice</a>
+                        <a class="collapse-item" href="<?= site_url('index.php/PO') ?>">Cetakan PO</a>
                     </div>
                 </div>
             </li>
