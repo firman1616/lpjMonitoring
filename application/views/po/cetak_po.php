@@ -136,12 +136,10 @@ Surabaya</span></br>
         <table width="71%" style="margin-top: 15px">
             <tbody>
                 <tr class="order">
-                    <td width="28%"><b>Date Ordered:</b></td>
-                    <td width="37%"><b>Salesrespon:</b></td>
-                    <td width="35%"><b>Payment Terms:</b></td>
+                    <td width="28%"><b>Our Order Reference::</b></td>
+                    <td width="37%"><b>Order Date:</b></td>
                 </tr>
                 <tr style="font-size: 11px">
-                    <td>123</td>
                     <td>123</td>
                     <td>123</td>
                 </tr>
@@ -151,10 +149,11 @@ Surabaya</span></br>
             <tbody>
                 <tr>
                     <td width="46%" height="15"><b>Description</b></td>
-                    <td width="11%"><b>Quantity</b></td>
-                    <td width="16%"><b>Duedate Kirim</b></td>
-                    <td width="15%"><b>Unit Price</b></td>
-                    <td width="12%"><b>Price</b></td>
+                    <td width="11%"><b>Taxes</b></td>
+                    <td width="16%"><b>Date Req.</b></td>
+                    <td width="15%"><b>Qty</b></td>
+                    <td width="12%"><b>Unit Price</b></td>
+                    <td width="12%"><b>Net Price</b></td>
                 </tr>
             </tbody>
         </table>
@@ -166,6 +165,7 @@ Surabaya</span></br>
                         <td width="11%" style="text-align: right;">123</td>
                         <td width="16%">123</td>
                         <td width="15%">123</td>
+                        <td width="12%">123</td>
                         <td width="12%">123</td>
                     </tr>
 
