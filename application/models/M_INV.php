@@ -51,7 +51,9 @@ class M_INV extends CI_Model
       sp.name as no_sjk,
       so.x_po_cust,
       ai.amount_untaxed as bruto,
-      ai.amount_tax 
+      ai.amount_tax,
+      rp.npwp,
+      ai.x_no_faktur
     from
       account_invoice ai
     left join res_partner rp on rp.id = ai.partner_id

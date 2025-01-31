@@ -9,7 +9,7 @@ foreach ($header_inv as $row) {
     $tgl_inv = $row->date_invoice;
     $due_date = $row->date_due;
     $no_sj = $row->no_sjk;
-    $npwp = $row->x_npwp;
+    $npwp = $row->npwp;
     $bruto = $row->bruto;
     $dpp_lain = 11/12 * $bruto;
     $ppn12 = $dpp_lain * 12/100;
@@ -181,13 +181,19 @@ foreach ($header_inv as $row) {
                         <p><span><b> Invoicing address:</b></span>
                     </td>
                     <td width="19%">&nbsp;</td>
-                    <td width="20%"><span><b> No. PO</b></span></td>
+                    <td width="20%"><span><b> No. Faktur</b></span></td>
                     <td width="1%" align="center">:</td>
                     <td width="22%"><?= $po_cust ?></td>
                 </tr>
                 <tr>
-                    <td rowspan="5" valign="top"><?= $nama_cus ?>, 
+                    <td rowspan="6" valign="top"><?= $nama_cus ?>, 
                         <?= $alamat ?></td>
+                    <td>&nbsp;</td>
+                    <td><span><b> No. PO</b></span></td>
+                    <td align="center">:</td>
+                    <td><?= $po_cust ?></td>
+                </tr>
+                <tr>
                     <td>&nbsp;</td>
                     <td><span><b> Termin Pembayaran</b></span></td>
                     <td align="center">:</td>
@@ -211,7 +217,7 @@ foreach ($header_inv as $row) {
                     <td align="center">:</td>
                     <td><?= $no_sj ?></td>
                 </tr>
-                <tr>
+				<tr>
                     <td>&nbsp;</td>
                     <td><span><b> No. NPWP</b></span></td>
                     <td align="center">:</td>
