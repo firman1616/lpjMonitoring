@@ -53,13 +53,14 @@ class M_INV extends CI_Model
       ai.amount_untaxed as bruto,
       ai.amount_tax,
       rp.npwp,
-      ai.x_no_faktur
+      ve.name as faktur
     from
       account_invoice ai
     left join res_partner rp on rp.id = ai.partner_id
     left join account_payment_term apt on apt.id = ai.payment_term_id
     left join stock_picking sp on sp.id = ai.x_no_sjk 
     left join sale_order so on so.name = ai.origin
+    left join vit_efaktur ve on ve.id = ai.efaktur_id 
     where
       number like '%INV%' and ai.id = '$inv'");
   }

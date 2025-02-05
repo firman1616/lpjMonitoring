@@ -14,6 +14,7 @@ foreach ($header_inv as $row) {
     $dpp_lain = 11/12 * $bruto;
     $ppn12 = $dpp_lain * 12/100;
     $netto = $bruto + $ppn12;
+    $no_faktur = $row->faktur;
 }
 ?>
 
@@ -183,7 +184,7 @@ foreach ($header_inv as $row) {
                     <td width="19%">&nbsp;</td>
                     <td width="20%"><span><b> No. Faktur</b></span></td>
                     <td width="1%" align="center">:</td>
-                    <td width="22%"><?= $po_cust ?></td>
+                    <td width="22%"><?= $no_faktur ?></td>
                 </tr>
                 <tr>
                     <td rowspan="6" valign="top"><?= $nama_cus ?>, 
