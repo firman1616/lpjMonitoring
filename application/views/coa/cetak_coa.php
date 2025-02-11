@@ -1,3 +1,28 @@
+<?php 
+foreach ($header_coa as $row) {
+    $coa = $row->name;
+    $sjk = $row->no_sjk;
+    $cus = $row->x_customer;
+    $barang = $row->x_nama_barang;
+    $tgl_periksa = $row->x_tanggal_pemeriksaan;
+    $tgl_kirim = $row->x_tanggal_kirim;
+    $po = $row->x_po_customer;
+    $jumlah = $row->x_jumlah;
+    $kode_mat = $row->x_kode_material;
+    $gramatur = $row->x_gramature;
+    $tiknes = $row->x_thickness;
+    $app = $row->x_apperance;
+    $warna = $row->x_colour;
+    $diecut = $row->x_diecut;
+    $lem = $row->x_glueing;
+    $panjang = $row->x_lenght;
+    $lebar = $row->x_width;
+    $shelf = $row->x_shelflife;
+    $user = $row->user;
+    $create = $row->create_date;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,41 +138,41 @@
             <span style="text-align: center; font-size: 20px"><b>COA</b></span><br>
             <span style="text-align: center; font-size: 14px"><u>Certificate of Analysis</u></span>
         </center>
-        <p style="text-align: center; font-size: 12px"><b>No : COA-1901-00018</b> </p>
+        <p style="text-align: center; font-size: 12px"><b>No : <?= $coa ?></b> </p>
 
         <table width="100%">
             <tbody>
                 <tr>
                     <td width="12%"><strong>Customer</strong></td>
                     <td width="1%">:</td>
-                    <td width="41%">PT. Bumi Menara Internusa</td>
+                    <td width="41%"><?= $cus ?></td>
                     <td width="24%"><strong>No PO Customer</strong></td>
                     <td width="1%">:</td>
-                    <td width="21%">SO-190109-187</td>
+                    <td width="21%"><?= $po ?></td>
                 </tr>
                 <tr>
                     <td><strong>Nama barang</strong></td>
                     <td>:</td>
-                    <td>STC VYN PE R JUMBO LP 16OZ U/TTP PLS CUP, PSTHNDHND133</td>
+                    <td><?= $barang ?></td>
                     <td><strong>No SJK</strong></td>
                     <td>:</td>
-                    <td>WH/OUT/00168</td>
+                    <td><?= $row->no_sjk ?></td>
                 </tr>
                 <tr>
                     <td><strong>Tanggal Pemeriksaan</strong></td>
                     <td>:</td>
-                    <td>10/01/2019</td>
+                    <td><?= date('d/m/Y', strtotime($tgl_periksa)) ?></td>
                     <td><strong>Jumlah</strong></td>
                     <td>:</td>
-                    <td>3.090 pcs</td>
+                    <td><?= number_format($jumlah) ?> pcs</td>
                 </tr>
                 <tr>
                     <td><strong>Tanggal Kirim</strong></td>
                     <td>:</td>
-                    <td>10/01/2019</td>
+                    <td><?= date('d/m/Y', strtotime($tgl_kirim)) ?></td>
                     <td><strong>Kode Material</strong></td>
                     <td>:</td>
-                    <td>&nbsp;</td>
+                    <td><?= $kode_mat ?></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -170,48 +195,48 @@
                 </tr>
                 <tr>
                     <td height="26">GRAMATURE</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= number_format($gramatur,1) ?> gsm</td>
+                    <td><?= number_format($gramatur,1) ?> gsm</td>
                 </tr>
                 <tr>
                     <td height="26">THICKNESS</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= number_format($tiknes) ?> mikron</td>
+                    <td><?= number_format($tiknes) ?> mikron</td>
                 </tr>
                 <tr>
                     <td height="26">APPERANCE</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= $app ?></td>
+                    <td><?= $app ?></td>
                 </tr>
                 <tr>
                     <td height="26">COLOUR</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= $warna ?></td>
+                    <td><?= $warna ?></td>
                 </tr>
                 <tr>
                     <td height="26">DIE CUT</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= $diecut ?></td>
+                    <td><?= $diecut ?></td>
                 </tr>
                 <tr>
                     <td height="26">GLUEING</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= $lem ?></td>
+                    <td><?= $lem ?></td>
                 </tr>
                 <tr>
                     <td height="26">LENGHT (+/-1 mm)</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= number_format($panjang) ?> mm</td>
+                    <td><?= number_format($panjang) ?> mm</td>
                 </tr>
                 <tr>
                     <td height="26">WIDTH (+/-1 mm)</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= number_format($lebar,1) ?> mm</td>
+                    <td><?= number_format($lebar,1) ?> mm</td>
                 </tr>
                 <tr>
                     <td height="26">SHELF LIFE (25 C; 55% RH)</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><?= $shelf ?> month</td>
+                    <td><?= $shelf ?> month</td>
                 </tr>
             </tbody>
         </table>
@@ -220,14 +245,14 @@
         <table width="185" style="margin-left: auto; margin-top: 15px" >
             <tbody>
                 <tr>
-                    <td width="144" align="center">Surabaya, 16 Desember 2025</td>
+                    <td width="144" align="center">Surabaya, <?= date('d F Y', strtotime($create)) ?></td>
                 </tr>
                 <tr>
                     <td height="49" align="center">&nbsp;</td>
                 </tr>
                 <tr>
                     <td align="center">
-						<b>Nama User</b><br>
+						<b><?= $user ?></b><br>
 						Quality Assurance
 					</td>
                 </tr>
@@ -253,33 +278,24 @@
     </footer>
 	
 	<p style="margin-top: 70%;"><h3><center>LAMPIRAN</center></h3></p>
-	<table width="453" border="1" style="margin: 5px auto; text-align: center; font-size: 12px; border-collapse: collapse; border: 1px solid black;" >
+	<table width="453" border="1" style="margin: 5px auto; text-align: center; font-size: 14px; border-collapse: collapse; border: 1px solid black;" >
   <tbody>
     <tr>
-      <td width="218" bgcolor="#B0ADAD"><strong>Lot / Serial Number </strong></td>
+      <td width="185" bgcolor="#B0ADAD"><strong>Lot / Serial Number </strong></td>
       <td width="99" bgcolor="#B0ADAD"><strong>Quantity</strong></td>
+      <td width="105" bgcolor="#B0ADAD"><strong>Production Date</strong></td>
       <td width="114" bgcolor="#B0ADAD"><strong>Expired Date</strong></td>
     </tr>
+    <?php 
+    foreach ($det_coa as $row) { ?>
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td><?= $row->no_lot ?></td>
+      <td><?= number_format($row->qty) ?> Pcs</td>
+      <td><?= date('d - m - Y', strtotime($row->tgl_produksi)) ?></td>
+      <td><?= date('d - m - Y', strtotime($row->tgl_expired)) ?></td>
     </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
+    <?php }
+    ?>
   </tbody>
 </table>
 

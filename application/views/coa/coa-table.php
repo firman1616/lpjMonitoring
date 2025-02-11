@@ -18,7 +18,7 @@
             <td><?= $row->x_customer ?></td>
             <td><?= $row->no_sjk ?></td>
             <td>
-                <a href="<?= base_url('index.php/COA/cetak_coa') ?>" class="btn btn-primary" title="cetak coa"><i class="fa fa-print"></i></a>
+                <a href="<?= base_url('index.php/COA/cetak_coa/'.$row->id) ?>" class="btn btn-primary" title="cetak coa"><i class="fa fa-print"></i></a>
             </td>
         </tr>
         <?php }

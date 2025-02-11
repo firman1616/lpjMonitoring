@@ -9,6 +9,7 @@ class M_COA extends CI_Model
   function getCOA()
   {
     return $this->db->query("SELECT
+      xc.id,
       xc.name as no_coa,
       xc.x_tanggal_pemeriksaan,
       xc.x_nama_barang,
@@ -18,50 +19,60 @@ class M_COA extends CI_Model
     from
       x_coa xc
     left join stock_picking sp on sp.id = xc.x_stock_id 
-    where xc.create_date BETWEEN NOW() - INTERVAL '12 months' AND NOW() order by xc.name desc;");
+    where xc.create_date BETWEEN NOW() - INTERVAL '12 months' AND NOW() order by xc.name desc");
   }
 
-  function cetak_inv($inv)  {
+  function cetak_coa($coa)
+  {
     return $this->db->query("SELECT
-      ai.id,
-      ai.number,
-      ai.partner_id,
-      ai.partner_shipping_id,
-      ai.date_invoice,
-      ai.date_due,
-      ai.origin,
-      rp.name as nama_cust,
-      rp.x_npwp,
-      rp.street,
-      apt.name as payment_term,
+      xc.name,
       sp.name as no_sjk,
-      so.x_po_cust,
-      ai.amount_untaxed as bruto,
-      ai.amount_tax,
-      rp.npwp,
-      ve.name as faktur
+      xc.x_customer,
+      xc.x_nama_barang ,
+      xc.x_tanggal_pemeriksaan,
+      xc.x_tanggal_kirim,
+      xc.x_po_customer,
+      xc.x_jumlah,
+      xc.x_keterangan,
+      xc.x_kode_material,
+      xc.x_gramature,
+      xc.x_thickness,
+      xc.x_apperance,
+      xc.x_colour,
+      xc.x_diecut,
+      xc.x_glueing,
+      xc.x_lenght,
+      xc.x_width,
+      xc.x_shelflife,
+      xc.create_uid,
+      rp.name AS user,
+      xc.create_date
     from
-      account_invoice ai
-    left join res_partner rp on rp.id = ai.partner_id
-    left join account_payment_term apt on apt.id = ai.payment_term_id
-    left join stock_picking sp on sp.id = ai.x_no_sjk 
-    left join sale_order so on so.name = ai.origin
-    left join vit_efaktur ve on ve.id = ai.efaktur_id 
+      x_coa xc
+    left join stock_picking sp on sp.id = xc.x_stock_id
+    LEFT JOIN res_users ru ON ru.id = xc.create_uid
+    LEFT JOIN res_partner rp ON rp.id = ru.partner_id
     where
-      number like '%INV%' and ai.id = '$inv'");
+      xc.id = '$coa'");
   }
 
-  function det_inv($inv) {
+  function det_coa($coa)
+  {
     return $this->db->query("SELECT
-      name,
-      quantity,
-      price_unit,
-      price_subtotal
+      xc.id,
+      spl.name as no_lot,
+      xcl.qty,
+      TO_CHAR(mp.date_planned_start, 'YYYY-MM-DD') as tgl_produksi,
+      TO_CHAR(mp.date_planned_start + INTERVAL '6 month', 'YYYY-MM-DD') as tgl_expired
     from
-      account_invoice_line ail
+      x_coa xc
+    left join x_coa_line xcl on
+      xcl.coa_id = xc.id
+    left join stock_production_lot spl on
+      spl.id = xcl.lot_id
+    left join mrp_production mp on
+      mp.x_barcode_ok = substring(spl.name,1,7)
     where
-      invoice_id = '$inv'");
+      xc.id = '$coa'");
   }
-
-  
 }

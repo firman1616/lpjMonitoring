@@ -32,15 +32,15 @@ class COA extends CI_Controller {
         echo json_encode($this->load->view('coa/coa-table',$data,false));
     }
 
-    function cetak_coa()  {
-        // $header_data = $this->inv->cetak_inv($inv)->result();
-        // $detail_data = $this->inv->det_inv($inv)->result();
-        // $name = !empty($header_data) && isset($header_data[0]->number) ? $header_data[0]->number : $inv;
-        $name = '123';
+    function cetak_coa($coa)  {
+        $header_data = $this->coa->cetak_coa($coa)->result();
+        $detail_data = $this->coa->det_coa($coa)->result();
+        $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $coa;
+        // $name = '123';
         $data = [
             'title' => $name,
-            'header_inv' =>' $header_data',
-            'det_inv' => '$detail_data',
+            'header_coa' => $header_data,
+            'det_coa' => $detail_data,
         ];
         // $name = $so;
         $this->load->library('pdf');
