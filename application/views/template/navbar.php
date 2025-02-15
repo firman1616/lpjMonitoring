@@ -52,6 +52,7 @@
                         <a class="collapse-item" href="<?= site_url('index.php/INV') ?>">Cetakan Invoice</a>
                         <a class="collapse-item" href="<?= site_url('index.php/PO') ?>">Cetakan PO</a>
                         <a class="collapse-item" href="<?= site_url('index.php/COA') ?>">Cetakan CoA</a>
+                        <a class="collapse-item" href="<?= site_url('index.php/Kwitansi') ?>">Cetakan Kwitansi</a>
                     </div>
                 </div>
             </li>
