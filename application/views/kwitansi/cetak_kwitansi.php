@@ -174,21 +174,21 @@ foreach ($header_kwi as $row) {
         <table width="100%" class="invship">
             <tbody>
                 <tr>
-                    <td width="43%">
+                    <td width="43%" align="left" valign="top">
                         <p><span><b> Diterima Dari:</b></span>
                     </td>
-                    <td width="6%">&nbsp;</td>
-                    <td width="17%"><span><b> Terbilang</b></span></td>
-                    <td width="1%" align="center">:</td>
-                    <td width="33%">Sembilan Ratus Enam Puluh Sembilan Ribu Enam Ratus Sembilan Puluh Enam Rupiah</td>
+                    <td width="6%" align="left" valign="top">&nbsp;</td>
+                    <td width="17%" align="left" valign="top"><span><b> Terbilang</b></span></td>
+                    <td width="1%" align="left" valign="top">:</td>
+                    <td width="33%" align="left" valign="top">Sembilan Ratus Enam Puluh Sembilan Ribu Enam Ratus Sembilan Puluh Enam Rupiah</td>
                 </tr>
                 <tr>
-                    <td valign="top"><?= $customer ?>,<br>
+                    <td align="left" valign="top"><?= $customer ?>,<br>
                         <?= $jalan ?></td>
-                    <td>&nbsp;</td>
-                    <td><span><b> Untuk Pembayaran</b></span></td>
-                    <td align="center">:</td>
-                    <td><?= $faktur ?> (<?= date('d/m/y', strtotime($invoice_date)) ?>)</td>
+                    <td align="left" valign="top">&nbsp;</td>
+                    <td align="left" valign="top"><span><b> Untuk Pembayaran</b></span></td>
+                    <td align="left" valign="top">:</td>
+                    <td align="left" valign="top"><?= $faktur ?> (<?= date('d/m/y', strtotime($invoice_date)) ?>)</td>
                 </tr>
                 <tr>
                     <td><b> SJ Keluar : </b><?= $sjk ?> (<?= date('d/m/y', strtotime($invoice_date)) ?>)</td>
