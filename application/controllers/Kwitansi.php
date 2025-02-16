@@ -32,14 +32,14 @@ class Kwitansi extends CI_Controller {
         echo json_encode($this->load->view('kwitansi/kwitansi-table',$data,false));
     }
 
-    function cetak_kwitansi()  {
-        // $header_data = $this->inv->cetak_inv($inv)->result();
+    function cetak_kwitansi($kwi)  {
+        $header_data = $this->kwitansi->cetak_kwitansi($kwi)->result();
         // $detail_data = $this->inv->det_inv($inv)->result();
-        // $name = !empty($header_data) && isset($header_data[0]->number) ? $header_data[0]->number : $inv;
-        $name = '123';
+        $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $kwi;
+        // $name = '123';
         $data = [
             'title' => $name,
-            'header_inv' => '$header_data',
+            'header_kwi' => $header_data,
             'det_inv' => '$detail_data',
         ];
         // $name = $so;
