@@ -40,11 +40,11 @@ class Kwitansi extends CI_Controller {
         $data = [
             'title' => $name,
             'header_kwi' => $header_data,
-            'det_inv' => '$detail_data',
+            // 'det_inv' => '$detail_data',
         ];
         // $name = $so;
         $this->load->library('pdf');
         $html = $this->load->view('kwitansi/cetak_kwitansi', $data, TRUE);
-        $this->pdf->createPDF($html, $name, false);
+        $this->pdf->createPDF($html, $name);
     }
 }
