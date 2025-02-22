@@ -58,21 +58,23 @@ class M_COA extends CI_Model
 
   function det_coa($coa)
   {
-    return $this->db->query("SELECT
-      xc.id,
-      spl.name as no_lot,
-      xcl.qty,
-      TO_CHAR(mp.date_planned_start, 'YYYY-MM-DD') as tgl_produksi,
-      TO_CHAR(mp.date_planned_start + INTERVAL '6 month', 'YYYY-MM-DD') as tgl_expired
-    from
-      x_coa xc
-    left join x_coa_line xcl on
-      xcl.coa_id = xc.id
-    left join stock_production_lot spl on
-      spl.id = xcl.lot_id
-    left join mrp_production mp on
-      mp.x_barcode_ok = substring(spl.name,1,7)
-    where
-      xc.id = '$coa'");
+    return $this->db->query("SELECT 
+          xc.id,
+          spl.name as no_lot,
+          xcl.qty,
+          TO_CHAR(mp.date_planned_start, 'YYYY-MM-DD') as tgl_produksi,
+          TO_CHAR(mp.date_planned_start + INTERVAL '6 month', 'YYYY-MM-DD') as tgl_expired
+    FROM
+          x_coa xc
+    LEFT JOIN x_coa_line xcl ON xcl.coa_id = xc.id
+    LEFT JOIN stock_production_lot spl ON spl.id = xcl.lot_id
+    LEFT JOIN (
+        SELECT DISTINCT ON (x_barcode_ok) 
+            x_barcode_ok, date_planned_start 
+        FROM mrp_production 
+        ORDER BY x_barcode_ok, date_planned_start ASC
+    ) mp ON mp.x_barcode_ok = substring(spl.name,1,7)
+    WHERE
+          xc.id = '$coa';");
   }
 }
