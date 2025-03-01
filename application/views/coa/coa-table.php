@@ -19,6 +19,11 @@
             <td><?= $row->no_sjk ?></td>
             <td>
                 <a href="<?= base_url('index.php/COA/cetak_coa/'.$row->id) ?>" class="btn btn-primary" title="cetak coa"><i class="fa fa-print"></i></a>
+                <?php 
+                if ($row->x_customer == 'PT. AJINOMOTO INDONESIA') { ?>
+                    <button class="btn btn-warning" type="button" title="coa ajimonoto"><i class="fa fa-print"></i></button>
+                <?php }
+                ?>
             </td>
         </tr>
         <?php }
