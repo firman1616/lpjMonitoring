@@ -172,7 +172,7 @@ foreach ($header_kwi as $row) {
                     <td width="6%" align="left" valign="top">&nbsp;</td>
                     <td width="17%" align="left" valign="top"><span><b> Terbilang</b></span></td>
                     <td width="1%" align="left" valign="top">:</td>
-                    <td width="33%" align="left" valign="top">Sembilan Ratus Enam Puluh Sembilan Ribu Enam Ratus Sembilan Puluh Enam Rupiah</td>
+                    <td width="33%" align="left" valign="top"><?= $terbilang ?></td>
                 </tr>
                 <tr>
                     <td align="left" valign="top"><?= $customer ?>,<br>
