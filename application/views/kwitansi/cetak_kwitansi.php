@@ -79,7 +79,7 @@ foreach ($header_kwi as $row) {
         table.item th {
             border: 1px solid black;
             /* Garis solid hitam untuk setiap sel */
-            padding: 5px;
+/*            padding: 5px;*/
             /* Memberikan jarak di dalam sel */
         }
 
@@ -167,12 +167,13 @@ foreach ($header_kwi as $row) {
             <tbody>
                 <tr>
                     <td width="43%" align="left" valign="top">
-                        <p><span><b> Diterima Dari:</b></span>
+                        <p><span><b> Diterima Dari:</b></span><br>
+							
                     </td>
-                    <td width="6%" align="left" valign="top">&nbsp;</td>
-                    <td width="17%" align="left" valign="top"><span><b> Terbilang</b></span></td>
+                    <td width="5%" align="left" valign="top">&nbsp;</td>
+                    <td width="15%" align="left" valign="top"><span><b> Terbilang</b></span></td>
                     <td width="1%" align="left" valign="top">:</td>
-                    <td width="33%" align="left" valign="top"><?= $terbilang ?></td>
+                    <td width="36%" align="left" valign="top"><?= $terbilang ?></td>
                 </tr>
                 <tr>
                     <td align="left" valign="top"><?= $customer ?>,<br>
@@ -193,29 +194,29 @@ foreach ($header_kwi as $row) {
         <table width="100%" class="item">
             <tbody>
                 <tr>
-                    <td width="51%"><strong>Keterangan</strong></td>
-                    <td width="49%"><strong>Jumlah</strong></td>
+                    <td width="30%" align="center" ><strong>Keterangan</strong></td>
+                    <td width="30%" align="center"><strong>Jumlah</strong></td>
                 </tr>
 
                 <tr>
                     <td>Bruto</td>
-                    <td>Rp. <?= number_format($bruto,2) ?></td>
+                    <td align="right">Rp. <?= number_format($bruto,2) ?></td>
                 </tr>
                 <tr>
                     <td>Diskon</td>
-                    <td>Rp. 0</td>
+                    <td align="right">Rp. 0</td>
                 </tr>
                 <tr>
                     <td>DPP Nilai Lain</td>
-                    <td>Rp. <?= number_format($dpp_lain,2) ?></td>
+                    <td align="right">Rp. <?= number_format($dpp_lain,2) ?></td>
                 </tr>
                 <tr>
                     <td>PPN 12%</td>
-                    <td>Rp. <?= number_format($ppn12,2) ?></td>
+                    <td align="right">Rp. <?= number_format($ppn12,2) ?></td>
                 </tr>
                 <tr>
                     <td><strong>Netto</strong></td>
-                    <td>Rp. <?= number_format($netto,2) ?></td>
+                    <td align="right">Rp. <?= number_format($netto,2) ?></td>
                 </tr>
             </tbody>
         </table>
