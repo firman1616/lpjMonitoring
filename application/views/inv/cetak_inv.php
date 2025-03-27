@@ -235,6 +235,7 @@ foreach ($header_inv as $row) {
                     <td width="15%" align="center"><strong>Quantity</strong></td>
                     <td width="13%" align="center"><strong>Unit Price</strong></td>
                     <td width="18%" align="center"><strong>Net Price</strong></td>
+                    <td>Diskon</td>
                 </tr>
                 <?php 
                 $x=1;
@@ -246,6 +247,7 @@ foreach ($header_inv as $row) {
                         <td align="right"><?= number_format($row->quantity) ?> pcs</td>
                         <td align="right">Rp <?= number_format($row->price_unit,2) ?></td>
                         <td align="right">Rp <?= number_format($row->price_subtotal,2) ?></td>
+                        <td><?= $row->diskon ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

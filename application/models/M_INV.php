@@ -70,7 +70,8 @@ class M_INV extends CI_Model
       name,
       quantity,
       price_unit,
-      price_subtotal
+      price_subtotal,
+      discount as diskon
     from
       account_invoice_line ail
     where
