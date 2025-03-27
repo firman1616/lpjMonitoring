@@ -103,7 +103,7 @@ class M_Plate extends CI_Model
     join stock_quant sq on spl.id = sq.lot_id 
     join stock_location sl on sl.id = sq.location_id 
     where
-      pt.id = '$id'");
+      pp.id = '$id'");
   }
 
   function get_plate_pldc($id)
@@ -125,7 +125,7 @@ class M_Plate extends CI_Model
         spl.product_id = pp.id
       join stock_quant sq on
         sq.lot_id = spl.id
-      where pt.id = '$id' and sq.location_id = '23'
+      where pt.id = '$id' and sq.location_id in ('23','15')
       group by 
       pt.id,
       pt.name,

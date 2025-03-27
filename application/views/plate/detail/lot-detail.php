@@ -20,9 +20,9 @@
                          <tr>
                              <th>No</th>
                              <th>No Lot</th>
-                             <th>QTY Pemakaian (Sheet)</th>
+                             <!-- <th>QTY Pemakaian (Sheet)</th> -->
                              <th>QTY Pemakaian (m2)</th>
-                             <th>QTY Sisa (m2)</th>
+                             <!-- <th>QTY Sisa (m2)</th> -->
                              <th>Action</th>
                          </tr>
                      </thead>
@@ -38,9 +38,9 @@
                              <tr>
                                  <td><?= $x++; ?></td>
                                  <td><?= $row->no_lot ?></td>
-                                 <td><?= $row->qty_lot ?></td>
-                                 <td><?= number_format($pemakaian) ?></td>
-                                 <td><?= number_format($sisa_pemakaian) ?></td>
+                                 <td><?= number_format($row->qty_lot) ?></td>
+                                 <!-- <td><?= number_format($pemakaian) ?></td>
+                                 <td><?= number_format($sisa_pemakaian) ?></td> -->
                                  <td>
                                      <button type="button" class="btn btn-primary" title="tracking OK"><i class="fa fa-list"></i></button>
                                  </td>
