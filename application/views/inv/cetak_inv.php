@@ -240,7 +240,7 @@ foreach ($header_inv as $row) {
                 $x=1;
                 foreach ($det_inv as $row) { 
                 $bruto2 = $row->quantity * $row->price_unit;
-                $diskon = $bruto2 * $row->diskon / 100;    
+                $diskon2 = $bruto2 * $row->diskon / 100;    
                 ?>
                     <tr>
                         <td><?= $x++; ?></td>
@@ -261,7 +261,7 @@ foreach ($header_inv as $row) {
                 </tr>
                 <tr>
                     <td>Diskon</td>
-                    <td>Rp <?= number_format($diskon,2) ?></td>
+                    <td>Rp <?= number_format($diskon2,2) ?></td>
                 </tr>
                 <tr>
                     <td>DPP Nilai Lain</td>
@@ -309,6 +309,4 @@ foreach ($header_inv as $row) {
 
     </footer>
 </body>
-
-
 </html>
