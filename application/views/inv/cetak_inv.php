@@ -235,19 +235,19 @@ foreach ($header_inv as $row) {
                     <td width="15%" align="center"><strong>Quantity</strong></td>
                     <td width="13%" align="center"><strong>Unit Price</strong></td>
                     <td width="18%" align="center"><strong>Net Price</strong></td>
-                    <td>Diskon</td>
                 </tr>
                 <?php 
                 $x=1;
-                foreach ($det_inv as $row) { ?>
-                    
+                foreach ($det_inv as $row) { 
+                $bruto2 = $row->quantity * $row->price_unit;
+                $diskon = $bruto2 * $row->diskon / 100;    
+                ?>
                     <tr>
                         <td><?= $x++; ?></td>
                         <td><?= $row->name ?></td>
                         <td align="right"><?= number_format($row->quantity) ?> pcs</td>
                         <td align="right">Rp <?= number_format($row->price_unit,2) ?></td>
                         <td align="right">Rp <?= number_format($row->price_subtotal,2) ?></td>
-                        <td><?= $row->diskon ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -257,11 +257,11 @@ foreach ($header_inv as $row) {
             <tbody>
                 <tr>
                     <td>Bruto</td>
-                    <td>Rp <?= number_format($bruto, 2) ?></td>
+                    <td>Rp <?= number_format($bruto2, 2) ?></td>
                 </tr>
                 <tr>
                     <td>Diskon</td>
-                    <td>Rp 0,00</td>
+                    <td>Rp <?= number_format($diskon,2) ?></td>
                 </tr>
                 <tr>
                     <td>DPP Nilai Lain</td>
