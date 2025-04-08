@@ -21,6 +21,33 @@ class M_Kwitansi extends CI_Model
       xk.create_date BETWEEN NOW() - INTERVAL '12 months' AND NOW() order by xk.name desc");
   }
 
+  // function cetak_kwitansi($kwi)  {
+  //   return $this->db->query("SELECT
+  //     xk.id,
+  //     xk.name as no_kwitansi,
+  //     xk.tgl_invoice,
+  //     xk.amount_to_text,
+  //     xk.invoice_id,
+  //     rp.name as customer,
+  //     ve.name as faktur,
+  //     sp.name as no_sjk,
+  //     ai.date_invoice,
+  //     ai.amount_untaxed,
+  //     rp.street
+  //   from
+  //     x_kuitansi xk
+  //   left join account_invoice ai on
+  //     ai.id = xk.invoice_id
+  //   left join res_partner rp on
+  //     rp.id = ai.partner_id
+  //   left join vit_efaktur ve on
+  //     ve.id = ai.efaktur_id
+  //   left join stock_picking sp on
+  //     sp.id = ai.x_no_sjk
+  //   where
+  //     xk.id = '$kwi'");
+  // }
+
   function cetak_kwitansi($kwi)  {
     return $this->db->query("SELECT
       xk.id,
@@ -29,10 +56,6 @@ class M_Kwitansi extends CI_Model
       xk.amount_to_text,
       xk.invoice_id,
       rp.name as customer,
-      ve.name as faktur,
-      sp.name as no_sjk,
-      ai.date_invoice,
-      ai.amount_untaxed,
       rp.street
     from
       x_kuitansi xk
@@ -40,12 +63,25 @@ class M_Kwitansi extends CI_Model
       ai.id = xk.invoice_id
     left join res_partner rp on
       rp.id = ai.partner_id
-    left join vit_efaktur ve on
-      ve.id = ai.efaktur_id
-    left join stock_picking sp on
-      sp.id = ai.x_no_sjk
     where
       xk.id = '$kwi'");
+  }
+
+  function det_kwitansi($kwi) {
+    return $this->db->query("SELECT
+      xkl.kuitansi_id,
+      xkl.x_invoice,
+      ai.number as no_inv,
+      ai.x_no_sjk as no_sjk,
+      ai.amount_untaxed as bruto,
+      ai.date_invoice,
+      sp.name as no_sjk
+    from
+      x_kuitansi_line xkl
+    join account_invoice ai on ai.id = xkl.x_invoice 
+    join stock_picking sp on sp.id = ai.x_no_sjk 
+    where
+      xkl.kuitansi_id = '$kwi'");
   }
 
   function det_inv($inv) {
