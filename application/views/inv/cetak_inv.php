@@ -238,9 +238,11 @@ foreach ($header_inv as $row) {
                 </tr>
                 <?php 
                 $x=1;
+                $total_net_price = 0;
                 foreach ($det_inv as $row) { 
                 $bruto2 = $row->quantity * $row->price_unit;
                 $diskon2 = $bruto2 * $row->diskon / 100;    
+                $total_net_price += $row->price_subtotal; // Tambahkan ke total
                 ?>
                     <tr>
                         <td><?= $x++; ?></td>
@@ -257,7 +259,7 @@ foreach ($header_inv as $row) {
             <tbody>
                 <tr>
                     <td>Bruto</td>
-                    <td>Rp <?= number_format($bruto2, 2) ?></td>
+                    <td>Rp <?= number_format($total_net_price, 2) ?></td>
                 </tr>
                 <tr>
                     <td>Diskon</td>
