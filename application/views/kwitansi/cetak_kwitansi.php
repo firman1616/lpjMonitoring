@@ -4,14 +4,16 @@ foreach ($header_kwi as $row) {
     $customer = $row->customer;
     $terbilang = $row->amount_to_text;
     $faktur = $row->faktur;
-    $invoice_date = $row->date_invoice;
+    $invoice_date = $row->list_date_invoice;
     $sjk = $row->no_sjk;
-    $bruto = $row->amount_untaxed;
+    $bruto = $row->total_untaxed;
     $dpp_lain = 11/12 * $bruto;
     $ppn12 = $dpp_lain * 12/100;
     $netto = $bruto + $ppn12;
     $jalan = $row->street;
+    $tgl_invoice = $row->tgl_invoice;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +60,7 @@ foreach ($header_kwi as $row) {
 
         .invship {
             margin-top: 5px;
-            font-size: 13px;
+            font-size: 10px;
             text-align: left;
             vertical-align: top;
         }
@@ -166,28 +168,25 @@ foreach ($header_kwi as $row) {
         <table width="100%" class="invship">
             <tbody>
                 <tr>
-                    <td width="43%" align="left" valign="top">
+                    <td width="43%" valign="top">
                         <p><span><b> Diterima Dari:</b></span><br>
 							
                     </td>
-                    <td width="5%" align="left" valign="top">&nbsp;</td>
-                    <td width="15%" align="left" valign="top"><span><b> Terbilang</b></span></td>
-                    <td width="1%" align="left" valign="top">:</td>
-                    <td width="36%" align="left" valign="top"><?= $terbilang ?></td>
+                    <td width="5%" valign="top">&nbsp;</td>
+                    <td width="15%" valign="top"><span><b> Terbilang</b></span></td>
+                    <td width="1%" valign="top">:</td>
+                    <td width="36%" valign="top"><?= $terbilang ?></td>
                 </tr>
                 <tr>
-                    <td align="left" valign="top"><?= $customer ?>,<br>
+                    <td valign="top"><?= $customer ?>,<br>
                         <?= $jalan ?></td>
-                    <td align="left" valign="top">&nbsp;</td>
-                    <td align="left" valign="top"><span><b> Untuk Pembayaran</b></span></td>
-                    <td align="left" valign="top">:</td>
-                    <td align="left" valign="top"><?= $faktur ?> (<?= date('d/m/y', strtotime($invoice_date)) ?>)</td>
+                    <td valign="top">&nbsp;</td>
+                    <td valign="top"><span><b> Untuk Pembayaran</b></span></td>
+                    <td valign="top">:</td>
+                    <td valign="top"><?= $faktur ?> <?= $invoice_date ?></td>
                 </tr>
                 <tr>
-                    <td><b> SJ Keluar : </b><?= $sjk ?> (<?= date('d/m/y', strtotime($invoice_date)) ?>)</td>
-                    <td>&nbsp;</td>
-                    <td align="center">&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td colspan="5"><b> SJ Keluar : </b><?= $sjk ?></td>
                 </tr>
             </tbody>
         </table>
@@ -229,7 +228,7 @@ foreach ($header_kwi as $row) {
                     <td width="1%" align="center"><strong>:</strong></td>
                     <td width="45%">&nbsp;</td>
                     <td width="2%">&nbsp;</td>
-                    <td width="33%" align="center">Sidoarjo, <?= date('d F Y', strtotime($invoice_date)) ?></td>
+                    <td width="33%" align="center">Sidoarjo, <?= date('d F Y', strtotime($tgl_invoice)) ?></td>
                 </tr>
                 <tr>
                     <td><strong>Bank</strong></td>

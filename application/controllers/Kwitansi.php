@@ -40,7 +40,7 @@ class Kwitansi extends CI_Controller {
         $data = [
             'title' => $name,
             'header_kwi' => $header_data,
-            'det_kwi' => $detail_data,
+            // 'det_kwi' => $detail_data,
         ];
         // $name = $so;
         $this->load->library('pdf');
