@@ -47,4 +47,22 @@ class COA extends CI_Controller {
         $html = $this->load->view('coa/cetak_coa', $data, TRUE);
         $this->pdf->createPDF($html, $name,false);
     }
+
+    function cetak_coa_aji($coa)  {
+        $header_data = $this->coa->cetak_coa($coa)->result();
+        $detail_data = $this->coa->det_coa($coa)->result();
+        $lot_aji = $this->coa->lot_aji($coa)->result();
+        $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $coa;
+        // $name = '123';
+        $data = [
+            'title' => $name,
+            'header_coa' => $header_data,
+            'det_coa' => $detail_data,
+            'lot_aji' => $lot_aji,
+        ];
+        // $name = $so;
+        $this->load->library('pdf');
+        $html = $this->load->view('coa/cetak_coa_aji', $data, TRUE);
+        $this->pdf->createPDF($html, $name,false);
+    }
 }

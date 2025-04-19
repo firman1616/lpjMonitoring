@@ -259,7 +259,15 @@ foreach ($header_inv as $row) {
             <tbody>
                 <tr>
                     <td>Bruto</td>
-                    <td>Rp <?= number_format($total_net_price, 2) ?></td>
+                    <td>
+                    <?php 
+                    if ($diskon2 == 0) {
+                        echo "Rp ". number_format($bruto,2);
+                    }else {
+                        echo "Rp ". number_format($bruto2,2);
+                    }
+                    ?>    </td>
+                    <!-- Rp <?= number_format($total_net_price, 2) ?> -->
                 </tr>
                 <tr>
                     <td>Diskon</td>

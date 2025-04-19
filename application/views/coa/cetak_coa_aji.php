@@ -23,6 +23,14 @@ foreach ($header_coa as $row) {
 }
 ?>
 
+<?php 
+foreach ($lot_aji as $row) {
+    $a = $row->no_lot;
+    $b = $row->tgl_produksi;
+    $c = $row->tgl_expired;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,7 +155,7 @@ foreach ($header_coa as $row) {
                     <td><?= $barang ?></td>
                     <td><strong>No SJK</strong></td>
                     <td>:</td>
-                    <td><?= $row->no_sjk ?></td>
+                    <td><?= $sjk ?></td>
                 </tr>
                 <tr>
                     <td><strong>Tanggal Pemeriksaan</strong></td>
@@ -233,16 +241,24 @@ foreach ($header_coa as $row) {
         </table>
 
 
-        <table width="185" style="margin-left: auto; margin-top: 15px" >
+        <table width="100%" style="margin-top: 15px" >
             <tbody>
                 <tr>
-                    <td width="144" align="center">Surabaya, <?= date('d F Y', strtotime($create)) ?></td>
+                    <td width="144" rowspan="3" align="left">
+                        <strong>Keterangan :</strong>
+                        <br>No Lot : <?= $a; ?>
+                        <br>Tanaggal Produksi : <?= date('d/m/Y',strtotime($b)) ?> - EXP <?= date('d/m/Y',strtotime($c)) ?>
+                    </td>
+					<td width="144" align="center">&nbsp;</td>
+					<td width="144" align="center">Surabaya, <?= date('d F Y', strtotime($create)) ?></td>
                 </tr>
                 <tr>
                     <td height="49" align="center">&nbsp;</td>
+					<td height="49" align="center">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td align="center">
+                    <td align="center">&nbsp;</td>
+					 <td align="center">
 						<b><?= $user ?></b><br>
 						Quality Assurance
 					</td>
@@ -268,27 +284,8 @@ foreach ($header_coa as $row) {
 
     </footer>
 	
-	<p style="margin-top: 70%;"><h3><center>LAMPIRAN</center></h3></p>
-	<table width="453" border="1" style="margin: 5px auto; text-align: center; font-size: 14px; border-collapse: collapse; border: 1px solid black;" >
-  <tbody>
-    <tr>
-      <td width="185" bgcolor="#B0ADAD"><strong>Lot / Serial Number </strong></td>
-      <td width="99" bgcolor="#B0ADAD"><strong>Quantity</strong></td>
-      <td width="105" bgcolor="#B0ADAD"><strong>Production Date</strong></td>
-      <td width="114" bgcolor="#B0ADAD"><strong>Expired Date</strong></td>
-    </tr>
-    <?php 
-    foreach ($det_coa as $row) { ?>
-    <tr>
-      <td><?= $row->no_lot ?></td>
-      <td><?= number_format($row->qty) ?> Pcs</td>
-      <td><?= date('d - m - Y', strtotime($row->tgl_produksi)) ?></td>
-      <td><?= date('d - m - Y', strtotime($row->tgl_expired)) ?></td>
-    </tr>
-    <?php }
-    ?>
-  </tbody>
-</table>
+	
+	
 
 </body>
 
