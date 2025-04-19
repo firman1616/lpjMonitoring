@@ -44,8 +44,8 @@ class COA extends CI_Controller {
         ];
         // $name = $so;
         $this->load->library('pdf');
-        $html = $this->load->view('coa/cetak_coa', $data, TRUE);
-        $this->pdf->createPDF($html, $name,false);
+        $html = $this->load->view('coa/cetak_coa', $data, true);
+        $this->pdf->createPDF($html, $name);
     }
 
     function cetak_coa_aji($coa)  {
@@ -62,7 +62,7 @@ class COA extends CI_Controller {
         ];
         // $name = $so;
         $this->load->library('pdf');
-        $html = $this->load->view('coa/cetak_coa_aji', $data, TRUE);
-        $this->pdf->createPDF($html, $name,false);
+        $html = $this->load->view('coa/cetak_coa_aji', $data, true);
+        $this->pdf->createPDF($html, $name);
     }
 }

@@ -20,6 +20,7 @@ foreach ($header_coa as $row) {
     $shelf = $row->x_shelflife;
     $user = $row->user;
     $create = $row->create_date;
+    $ket = $row->x_keterangan;
 }
 ?>
 
@@ -158,28 +159,28 @@ foreach ($lot_aji as $row) {
                     <td><?= $sjk ?></td>
                 </tr>
                 <tr>
-                    <td><strong>Tanggal Pemeriksaan</strong></td>
+                    <td><strong>Tanggal Produksi</strong></td>
                     <td>:</td>
-                    <td><?= date('d/m/Y', strtotime($tgl_periksa)) ?></td>
+                    <td><?= date('d/m/Y', strtotime($b)) ?></td>
                     <td><strong>Jumlah</strong></td>
                     <td>:</td>
                     <td><?= number_format($jumlah) ?> pcs</td>
                 </tr>
                 <tr>
-                    <td><strong>Tanggal Kirim</strong></td>
+                    <td><strong>Tanggal Expired</strong></td>
                     <td>:</td>
-                    <td><?= date('d/m/Y', strtotime($tgl_kirim)) ?></td>
+                    <td><?= date('d/m/Y', strtotime($c)) ?></td>
                     <td><strong>Kode Material</strong></td>
                     <td>:</td>
                     <td><?= $kode_mat ?></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td><strong>Tanggal Kirim</strong></td>
+                    <td>:</td>
+                    <td><?= date('d/m/Y', strtotime($tgl_kirim)) ?></td>
                     <td><strong>No Batch</strong></td>
                     <td>:</td>
-                    <td>Terlampir</td>
+                    <td><?= $a ?></td>
                 </tr>
             </tbody>
         </table>
@@ -218,9 +219,9 @@ foreach ($lot_aji as $row) {
                     <td><?= $diecut ?></td>
                 </tr>
                 <tr>
-                    <td height="26">GLUEING</td>
-                    <td><?= $lem ?></td>
-                    <td><?= $lem ?></td>
+                    <td height="26">ADHESIVE</td>
+                    <td><?= $ket ?></td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td height="26">LENGHT (+/-1 mm)</td>
@@ -244,11 +245,7 @@ foreach ($lot_aji as $row) {
         <table width="100%" style="margin-top: 15px" >
             <tbody>
                 <tr>
-                    <td width="144" rowspan="3" align="left">
-                        <strong>Keterangan :</strong>
-                        <br>No Lot : <?= $a; ?>
-                        <br>Tanaggal Produksi : <?= date('d/m/Y',strtotime($b)) ?> - EXP <?= date('d/m/Y',strtotime($c)) ?>
-                    </td>
+                    <td width="144" rowspan="3" align="left">&nbsp;</td>
 					<td width="144" align="center">&nbsp;</td>
 					<td width="144" align="center">Surabaya, <?= date('d F Y', strtotime($create)) ?></td>
                 </tr>
@@ -284,7 +281,27 @@ foreach ($lot_aji as $row) {
 
     </footer>
 	
-	
+	<p style="margin-top: 70%;"><h3><center>LAMPIRAN</center></h3></p>
+	<table width="453" border="1" style="margin: 5px auto; text-align: center; font-size: 14px; border-collapse: collapse; border: 1px solid black;" >
+  <tbody>
+    <tr>
+      <td width="185" bgcolor="#B0ADAD"><strong>Lot / Serial Number </strong></td>
+      <td width="99" bgcolor="#B0ADAD"><strong>Quantity</strong></td>
+      <td width="105" bgcolor="#B0ADAD"><strong>Production Date</strong></td>
+      <td width="114" bgcolor="#B0ADAD"><strong>Expired Date</strong></td>
+    </tr>
+    <?php 
+    foreach ($det_coa as $row) { ?>
+    <tr>
+      <td><?= $row->no_lot ?></td>
+      <td><?= number_format($row->qty) ?> Pcs</td>
+      <td><?= date('d - m - Y', strtotime($row->tgl_produksi)) ?></td>
+      <td><?= date('d - m - Y', strtotime($row->tgl_expired)) ?></td>
+    </tr>
+    <?php }
+    ?>
+  </tbody>
+</table>
 	
 
 </body>
