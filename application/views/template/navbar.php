@@ -53,6 +53,7 @@
                         <a class="collapse-item" href="<?= site_url('index.php/PO') ?>">Cetakan PO</a>
                         <a class="collapse-item" href="<?= site_url('index.php/COA') ?>">Cetakan CoA</a>
                         <a class="collapse-item" href="<?= site_url('index.php/Kwitansi') ?>">Cetakan Kwitansi</a>
+                        <a class="collapse-item" href="<?= site_url('index.php/SPH') ?>">Cetakan SPH</a>
                     </div>
                 </div>
             </li>
