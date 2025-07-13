@@ -44,7 +44,7 @@ class SPH extends CI_Controller {
         ];
         // $name = $so;
         $this->load->library('pdf');
-        $html = $this->load->view('SPH/cetak_sph', $data, false);
-        $this->pdf->createPDF($html, $name);
+        $html = $this->load->view('sph/cetak_sph', $data, true);
+        $this->pdf->createPDF($html, $name, FALSE);
     }
 }

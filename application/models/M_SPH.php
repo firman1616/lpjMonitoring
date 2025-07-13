@@ -31,15 +31,12 @@ class M_SPH extends CI_Model
       xpq.x_keterangan,
       rp.name as nama_cust,
       rp.street,
-      rp2.name as admin_name,
-      hj.name as job
+      rp2.name as admin_name
     from
       x_print_quo xpq 
     join res_partner rp on rp.id = xpq.x_cust
     join res_users ru on ru.id = xpq.x_user_id
     join res_partner rp2 on rp2.id = ru.partner_id 
-    join hr_employee he on he.name_related = rp2.name 
-    join hr_job hj on hj.id = he.job_id 
     where
       xpq.id = '$sph'");
   }
