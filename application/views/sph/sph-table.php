@@ -18,7 +18,7 @@
                 <td><?= $row->nama_cust ?></td>
                 <td><?= $row->x_payment_term ?></td>
                 <td>
-                    <button type="button" class="btn btn-primary" title="cetak sph"><i class="fa fa-print"></i></button>
+                    <a href="<?= base_url('index.php/SPH/cetak_sph/'.$row->id) ?>" target="_new" type="button" class="btn btn-primary" title="cetak SPH "><i class="fa fa-print"></i></a>
                 </td>
             </tr>
         <?php }

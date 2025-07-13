@@ -1,23 +1,3 @@
-<?php 
-foreach ($header_inv as $row) {
-    $no_inv = $row->number;
-    $tgl_inv = $row->date_invoice;
-    $nama_cus = $row->nama_cust;
-    $alamat = $row->street;
-    $po_cust = $row->x_po_cust;
-    $termin = $row->payment_term;
-    $tgl_inv = $row->date_invoice;
-    $due_date = $row->date_due;
-    $no_sj = $row->no_sjk;
-    $npwp = $row->npwp;
-    $bruto = $row->bruto;
-    $dpp_lain = 11/12 * $bruto;
-    $ppn12 = $dpp_lain * 12/100;
-    $netto = $bruto + $ppn12;
-    $no_faktur = $row->faktur;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -174,7 +154,7 @@ foreach ($header_inv as $row) {
             </tbody>
         </table>
         <p style="text-align: center; font-size: 16px"><b>Invoice</b></p>
-        <p style="text-align: center; font-size: 16px"><?= $no_inv ?></p>
+        <p style="text-align: center; font-size: 16px">123</p>
         <table width="100%" class="invship">
             <tbody>
                 <tr>
@@ -184,15 +164,15 @@ foreach ($header_inv as $row) {
                     <td width="19%">&nbsp;</td>
                     <td width="20%"><span><b> No. Faktur</b></span></td>
                     <td width="1%" align="center">:</td>
-                    <td width="22%"><?= $no_faktur ?></td>
+                    <td width="22%">123</td>
                 </tr>
                 <tr>
-                    <td rowspan="6" valign="top"><?= $nama_cus ?>,<br> 
-                        <?= $alamat ?></td>
+                    <td rowspan="6" valign="top">123,<br> 
+                        123</td>
                     <td>&nbsp;</td>
                     <td><span><b> No. PO</b></span></td>
                     <td align="center">:</td>
-                    <td><?= $po_cust ?></td>
+                    <td>123</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -204,25 +184,25 @@ foreach ($header_inv as $row) {
                     <td>&nbsp;</td>
                     <td><span><b> Tgl. Invoice</b></span></td>
                     <td align="center">:</td>
-                    <td><?= date('d/m/Y', strtotime($tgl_inv)) ?></td>
+                    <td>123</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td><span><b> Due Date</b></span></td>
                     <td align="center">:</td>
-                    <td><?= date('d/m/Y', strtotime($due_date)) ?></td>
+                    <td>123</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td><span><b> No. Surat Jalan</b></span></td>
                     <td align="center">:</td>
-                    <td><?= $no_sj ?></td>
+                    <td>123</td>
                 </tr>
 				<tr>
                     <td>&nbsp;</td>
                     <td><span><b> No. NPWP</b></span></td>
                     <td align="center">:</td>
-                    <td><?= $npwp ?></td>
+                    <td>123</td>
                 </tr>
             </tbody>
         </table>
@@ -236,22 +216,13 @@ foreach ($header_inv as $row) {
                     <td width="13%" align="center"><strong>Unit Price</strong></td>
                     <td width="18%" align="center"><strong>Net Price</strong></td>
                 </tr>
-                <?php 
-                $x=1;
-                $total_net_price = 0;
-                foreach ($det_inv as $row) { 
-                $bruto2 = $row->quantity * $row->price_unit;
-                $diskon2 = $bruto2 * $row->diskon / 100;    
-                $total_net_price += $row->price_subtotal; // Tambahkan ke total
-                ?>
                     <tr>
                         <td><?= $x++; ?></td>
                         <td><?= $row->name ?></td>
-                        <td align="right"><?= number_format($row->quantity) ?> pcs</td>
-                        <td align="right">Rp <?= number_format($row->price_unit,2) ?></td>
-                        <td align="right">Rp <?= number_format($row->price_subtotal,2) ?></td>
+                        <td align="right">123</td>
+                        <td align="right">123</td>
+                        <td align="right">123</td>
                     </tr>
-                <?php } ?>
             </tbody>
         </table>
 
@@ -260,30 +231,24 @@ foreach ($header_inv as $row) {
                 <tr>
                     <td>Bruto</td>
                     <td>
-                    <?php 
-                    if ($diskon2 == 0) {
-                        echo "Rp ". number_format($bruto,2);
-                    }else {
-                        echo "Rp ". number_format($bruto2,2);
-                    }
-                    ?>    </td>
+                    123</td>
                     <!-- Rp <?= number_format($total_net_price, 2) ?> -->
                 </tr>
                 <tr>
                     <td>Diskon</td>
-                    <td>Rp <?= number_format($diskon2,2) ?></td>
+                    <td>123</td>
                 </tr>
                 <tr>
                     <td>DPP Nilai Lain</td>
-                    <td>Rp <?= number_format($dpp_lain,2) ?></td>
+                    <td>123</td>
                 </tr>
                 <tr>
                     <td>PPN 12%</td>
-                    <td>Rp <?= number_format($ppn12,2) ?></td>
+                    <td>123</td>
                 </tr>
                 <tr>
                     <td>Netto</td>
-                    <td>Rp <?= number_format($netto,2) ?></td>
+                    <td>123</td>
                 </tr>
             </tbody>
         </table>

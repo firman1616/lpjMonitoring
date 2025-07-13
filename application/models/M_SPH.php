@@ -9,6 +9,7 @@ class M_SPH extends CI_Model
   function getSPH()
   {
     return $this->db->query("SELECT
+      xpq.id,
       xpq.name as no_sph,
       rp.name as nama_cust,
       xpq.start_date,
@@ -22,48 +23,53 @@ class M_SPH extends CI_Model
     order by xpq.name desc");
   }
 
-  function cetak_inv($inv)
+  function cetak_sph($sph)
   {
     return $this->db->query("SELECT
-      ai.id,
-      ai.number,
-      ai.partner_id,
-      ai.partner_shipping_id,
-      ai.date_invoice,
-      ai.date_due,
-      ai.origin,
+      xpq.id,
+      xpq.name as no_sph,
+      xpq.x_keterangan,
       rp.name as nama_cust,
-      rp.x_npwp,
       rp.street,
-      apt.name as payment_term,
-      sp.name as no_sjk,
-      so.x_po_cust,
-      ai.amount_untaxed as bruto,
-      ai.amount_tax,
-      rp.npwp,
-      ve.name as faktur
+      rp2.name as admin_name,
+      hj.name as job
     from
-      account_invoice ai
-    left join res_partner rp on rp.id = ai.partner_id
-    left join account_payment_term apt on apt.id = ai.payment_term_id
-    left join stock_picking sp on sp.id = ai.x_no_sjk 
-    left join sale_order so on so.name = ai.origin
-    left join vit_efaktur ve on ve.id = ai.efaktur_id 
+      x_print_quo xpq 
+    join res_partner rp on rp.id = xpq.x_cust
+    join res_users ru on ru.id = xpq.x_user_id
+    join res_partner rp2 on rp2.id = ru.partner_id 
+    join hr_employee he on he.name_related = rp2.name 
+    join hr_job hj on hj.id = he.job_id 
     where
-      number like '%INV%' and ai.id = '$inv'");
+      xpq.id = '$sph'");
   }
 
-  function det_inv($inv)
+  function det_sph($sph)
   {
     return $this->db->query("SELECT
-      name,
-      quantity,
-      price_unit,
-      price_subtotal,
-      discount as diskon
+      xpql.x_quo as id_sph_head,
+      xpql.x_sq,
+      xsq.name as sq,
+      xsq.x_product,
+      pp.default_code,
+      pt.name as nama_produk,
+      xsq.x_manufacturing_type,
+      xsq.x_planning_type,
+      xsq.x_length,
+      xsq.x_width,
+      xcb.name as nama_bahan,
+      xsq.x_satuan as packing_layout,
+      xsq.x_qty,
+      xsq.x_harga_renego_sales as harga_pcs,
+      at2.description as tax 
     from
-      account_invoice_line ail
+      x_print_quo_line xpql
+    join x_sales_quotation xsq on xsq.id = xpql.x_sq 
+    join product_product pp on pp.id = xsq.x_product
+    join product_template pt on pt.id = pp.product_tmpl_id 
+    join x_config_bahan xcb on xcb.id = xsq.x_material_type_id2 
+    join account_tax at2 on at2.id = xpql.x_tax_id 
     where
-      invoice_id = '$inv'");
+      xpql.x_quo = '$sph'");
   }
 }

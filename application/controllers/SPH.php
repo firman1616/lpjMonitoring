@@ -32,19 +32,19 @@ class SPH extends CI_Controller {
         echo json_encode($this->load->view('sph/sph-table',$data,false));
     }
 
-    function cetak_inv($inv)  {
-        $header_data = $this->inv->cetak_inv($inv)->result();
-        $detail_data = $this->inv->det_inv($inv)->result();
-        $name = !empty($header_data) && isset($header_data[0]->number) ? $header_data[0]->number : $inv;
+    function cetak_sph($sph)  {
+        $header_data = $this->sph->cetak_sph($sph)->result();
+        $detail_data = $this->sph->det_sph($sph)->result();
+        $name = !empty($header_data) && isset($header_data[0]->no_sph) ? $header_data[0]->no_sph : $sph;
         // $name = '123';
         $data = [
             'title' => $name,
-            'header_inv' => $header_data,
-            'det_inv' => $detail_data,
+            'header_sph' => $header_data,
+            'det_sph' => $detail_data,
         ];
         // $name = $so;
         $this->load->library('pdf');
-        $html = $this->load->view('inv/cetak_inv', $data, true);
+        $html = $this->load->view('SPH/cetak_sph', $data, false);
         $this->pdf->createPDF($html, $name);
     }
 }
