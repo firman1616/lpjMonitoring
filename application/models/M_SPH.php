@@ -31,6 +31,7 @@ class M_SPH extends CI_Model
       xpq.x_keterangan,
       rp.name as nama_cust,
       rp.street,
+      rp.phone,
       rp2.name as admin_name
     from
       x_print_quo xpq 
@@ -45,7 +46,6 @@ class M_SPH extends CI_Model
   {
     return $this->db->query("SELECT
       xpql.x_quo as id_sph_head,
-      xpql.x_sq,
       xsq.name as sq,
       xsq.x_product,
       pp.default_code,

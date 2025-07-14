@@ -1,3 +1,14 @@
+<?php
+foreach ($header_sph as $row) {
+    $no_sph = $row->no_sph;
+    $ket = $row->x_keterangan;
+    $nama_cust = $row->nama_cust;
+    $alamat = $row->street;
+    $sales = $row->admin_name;
+    $phone = $row->phone;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -158,42 +169,42 @@
     <tbody>
         <tr>
         <td width="8%"><strong><span class="harga">No</span></strong></td>
-        <td width="2%" align="center" valign="middle"><strong><span class="harga">:</span></strong></td>
-        <td width="40%"><strong><span class="harga">No_sph</span></strong></td>
+        <td width="2%" align="center"><strong><span class="harga">:</span></strong></td>
+        <td width="40%"><strong><span class="harga"><?= $no_sph ?></span></strong></td>
         <td width="27%">&nbsp;</td>
-        <td width="23%" class="harga"><strong>Sidoarjo, 16 September 2025</strong></td>
+        <td width="23%" class="harga"><strong>Sidoarjo, <?= date('d F Y') ?></strong></td>
         </tr>
         <tr>
         <td><strong><span class="harga">To</span></strong></td>
-        <td align="center" valign="middle"><strong><span class="harga">:</span></strong></td>
-        <td><strong><span class="harga">PT. ABC</span></strong></td>
+        <td align="center"><strong><span class="harga">:</span></strong></td>
+        <td><strong><span class="harga"><?= $nama_cust ?></span></strong></td>
         <td>&nbsp;</td>
         <td class="harga">&nbsp;</td>
         </tr>
         <tr>
         <td><strong><span class="harga">Tlp</span></strong></td>
-        <td align="center" valign="middle"><strong><span class="harga">:</span></strong></td>
-        <td><strong><span class="harga">0311111</span></strong></td>
+        <td align="center"><strong><span class="harga">:</span></strong></td>
+        <td><strong><span class="harga"><?= $phone ?></span></strong></td>
         <td>&nbsp;</td>
         <td class="harga">&nbsp;</td>
         </tr>
         <tr>
-        <td><strong><span class="harga">Alamat</span></strong></td>
-        <td align="center" valign="middle"><strong><span class="harga">:</span></strong></td>
-        <td><strong><span class="harga">DESA ABC</span></strong></td>
+        <td valign="top"><strong><span class="harga">Alamat</span></strong></td>
+        <td align="center" valign="top"><strong><span class="harga">:</span></strong></td>
+        <td><strong><span class="harga"><?= $alamat ?></span></strong></td>
         <td>&nbsp;</td>
         <td class="harga">&nbsp;</td>
         </tr>
         <tr>
         <td><strong><span class="harga">Attn</span></strong></td>
-        <td align="center" valign="middle"><strong><span class="harga">:</span></strong></td>
+        <td align="center"><strong><span class="harga">:</span></strong></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td class="harga">&nbsp;</td>
         </tr>
         <tr>
         <td height="20"><strong><span class="harga">Re</span></strong></td>
-        <td align="center" valign="middle"><strong><span class="harga">:</span></strong></td>
+        <td align="center"><strong><span class="harga">:</span></strong></td>
         <td><strong><span class="harga">Perhal Penawaran Harga</span></strong></td>
         <td>&nbsp;</td>
         <td class="harga">&nbsp;</td>
@@ -213,21 +224,24 @@
                         <td width="10%" align="center"><strong>Jumlah (pcs)</strong></td>
                         <td width="9%" align="center"><strong>Haga (Rp/pcs)</strong></td>
                     </tr>
-                        <tr>
-                            <td>SQ-250603-1245</td>
-                            <td>[5-01-TRS01-00259]Label Barcode Blank 200x80 mm</td>
-                            <td>80x200</td>
-                            <td>
-                            Bahan	: - Sticker - Paper - Sticker Art 80
-                            gsm - Glassin Putih
-                            <br>Warna	:
-                            <br>Finishing	: None
-                            <br>Diecut	:
-                            <br>Packing Layout  : Roll
-                            </td>
-                            <td>50.000</td>
-                            <td>305,00</td>
-                        </tr>
+                    <?php 
+                    foreach ($det_sph as $row) { ?>
+                    <tr>
+                        <td><?= $row->sq ?></td>
+                        <td>[<?= $row->default_code ?>]<?= $row->nama_produk ?></td>
+                        <td><?= $row->x_length.'x'.$row->x_width ?></td>
+                        <td>
+                        Bahan	: - <?= $row->nama_bahan ?>
+                        <br>Warna	:
+                        <br>Finishing	: None
+                        <br>Diecut	:
+                        <br>Packing Layout  : <?= $row->packing_layout ?>
+                        </td>
+                        <td><?= number_format($row->x_qty) ?></td>
+                        <td><?= number_format($row->harga_pcs,2) ?></td>
+                    </tr>
+                    <?php }
+                    ?>
                 </tbody>
             </table>
 			<br>
@@ -238,21 +252,7 @@
                     </tr>
                     <tr>
                          <td style="font-size: 12px; border: 1px solid black;">
-                          1.	Harga Belum termasuk PPN 11%
-                          <br>2.	Penawaran harga berlaku 14 hari dari tanggal penawaran.
-                          <br>3.	Termin pembayaran : 60 Nett Days
-                          <br>4.	Alamat Transfer Bank BCA a.n PT. Laprint Jaya a/c 7880 932 688. 
-                          <br>5.	Garansi kualitas 6 bulan dari tanggal pengiriman
-                          <br>6.	Komplain kuantiti wajib menyertakan bukti berupa video & dalam waktu maksimal 7 hari setelah barang diterima.
-                          <br>7.	Jika ada perubahan spesifikasi / jumlah Qty order yang tidak sesuai dengan penawaran ini, akan dikalkulasi ulang
-                          <br>8.	Perubahan design maksimal 3x tiap design
-                          <br>9.	Jika ada perubahan design / spesifikasi setelah
-                          <br>10.	plate dibuat maka menjadi tanggung jawab customer
-                          <br>11.	Apabila order di cancel dengan alasan apapun oleh customer dengan kondisi plate sudah jadi dan telah di proses maka DP tidak dapat dikembalikan / biaya cetak dan proses akan dibebankan ke customer
-                          <br>12.	Pengiriman barang -+14 hari kerja setelah Final ACC (tidak termasuk Sabtu, Minggu & hari libur)
-                          <br>13.	Frc Tjiwi Kimia Mojokerto
-                          <br>14.	Harga diatas adalah harga satu paket pekerjaan.
-                          <br>15.	Jika dalam waktu 3x24 jam SPH tidak ditanda tangani dan tidak dikirim kembali kepada kami maka akan dianggap setuju dengan ketentuan-ketentuan yang sudah tertulis di atas                        </td>
+                          <?= $ket ?></td>
                     </tr>
                 </tbody>
             </table>
