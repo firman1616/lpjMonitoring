@@ -252,7 +252,7 @@ foreach ($header_sph as $row) {
                     </tr>
                     <tr>
                          <td style="font-size: 12px; border: 1px solid black;">
-                          <?= $ket ?></td>
+                          <?= nl2br($ket) ?></td>
                     </tr>
                 </tbody>
             </table>
