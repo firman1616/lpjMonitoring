@@ -29,10 +29,12 @@ class M_SPH extends CI_Model
       xpq.id,
       xpq.name as no_sph,
       xpq.x_keterangan,
+      xpq.x_keterangan2,
       rp.name as nama_cust,
       rp.street,
       rp.phone,
-      rp2.name as admin_name
+      rp2.name as admin_name,
+      xpq.x_pic_cust
     from
       x_print_quo xpq 
     join res_partner rp on rp.id = xpq.x_cust
@@ -58,14 +60,19 @@ class M_SPH extends CI_Model
       xsq.x_satuan as packing_layout,
       xsq.x_qty,
       xsq.x_harga_renego_sales as harga_pcs,
-      at2.description as tax 
+      xsq.x_tinta_std,
+      xckb.name as kategori_bahan,
+      at2.description as tax,
+      xds.name as diecute_shape
     from
       x_print_quo_line xpql
     join x_sales_quotation xsq on xsq.id = xpql.x_sq 
     join product_product pp on pp.id = xsq.x_product
     join product_template pt on pt.id = pp.product_tmpl_id 
     join x_config_bahan xcb on xcb.id = xsq.x_material_type_id2 
-    join account_tax at2 on at2.id = xpql.x_tax_id 
+    join account_tax at2 on at2.id = xpql.x_tax_id
+    join x_config_kategori_bahan xckb on xckb.id = xsq.x_kalkulasi_berat
+    join x_diecut_shape xds on xds.id = pt.x_diecut_shape_id
     where
       xpql.x_quo = '$sph'");
   }

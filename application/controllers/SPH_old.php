@@ -35,6 +35,23 @@ class SPH extends CI_Controller
         echo json_encode($this->load->view('sph/sph-table', $data, false));
     }
 
+    // function cetak_sph($sph)  {
+    //     $header_data = $this->sph->cetak_sph($sph)->result();
+    //     $detail_data = $this->sph->det_sph($sph)->result();
+    //     $name = !empty($header_data) && isset($header_data[0]->no_sph) ? $header_data[0]->no_sph : $sph;
+    //     // $name = '123';
+    //     $data = [
+    //         'title' => $name,
+    //         'header_sph' => $header_data,
+    //         'det_sph' => $detail_data,
+    //     ];
+    //     // $name = $so;
+    //     $this->load->library('pdf');
+    //     $html = $this->load->view('sph/cetak_sph', $data, true);
+    //     $this->pdf->createPDF($html, $name, false);
+    // }
+
+
     public function cetak_sph($sph)
     {
         $header_data = $this->sph->cetak_sph($sph)->result();
@@ -54,31 +71,27 @@ class SPH extends CI_Controller
         // Inisialisasi mPDF
         $mpdf = new \Mpdf\Mpdf([
             'format' => 'A4',
-            'margin_top' => 28,
-            'margin_bottom' => 30,
-            // 'default_font' => 'Arial',
+            'margin_top' => 30,
+            'margin_bottom' => 20,
         ]);
 
-        $logoPath = base_url('assets/img/lpjHeader.jpg');
-
-
+        // Set header & footer HTML
         $mpdf->SetHTMLHeader('
-            <div style="text-align:left;">
-                <img width="282" height="56" alt="Logo" style="margin-bottom: 7px;" src="' . $logoPath . '" />
-            </div>
-            <hr style="border: 2px solid black; width: 100%; margin-top: 0px">
-        ');
+        <div style="text-align:center; font-weight: bold;">
+            SURAT PENAWARAN HARGA
+        </div>
+        <hr>
+    ');
 
         $mpdf->SetHTMLFooter('
-            <div style="text-align: center; font-size: 11px;">
-                <hr style="border: none; border-top: 1px solid #000; margin-bottom: 5px;">
-                Office: Komplek Pergudangan Sinar Gedangan B-06 Ds. Gemurung - Gedangan<br>
-                Phone: +62 31 - 99038048, 99038054, 99038064 • Fax: +62 31 - 8011489<br>
-                Email: sales@laprintjaya.com • Website: http://www.laprintjaya.com
-            </div>
-        ');
-
-
+        <hr>
+        <div style="position: fixed; bottom: -5px; left: 0; right: 0; text-align: center; font-size: 11px;">
+        <hr style="border: none; border-top: 1px solid #000; margin-bottom: 5px;">
+        Office: Komplek Pergudangan Sinar Gedangan B-06 Ds. Gemurung - Gedangan<br>
+        Phone: +62 31 - 99038048, 99038054, 99038064 • Fax: +62 31 - 8011489<br>
+        Email: sales@laprintjaya.com • Website: http://www.laprintjaya.com
+    </div>
+    ');
 
         // Tambahkan HTML ke PDF
         $mpdf->WriteHTML($html);
@@ -86,22 +99,4 @@ class SPH extends CI_Controller
         // Output ke browser
         $mpdf->Output("SPH_$name.pdf", 'I'); // 'I' = Inline (di-browser), 'D' = Download
     }
-
-    // function cetak_sph($sph)  {
-    //     $header_data = $this->sph->cetak_sph($sph)->result();
-    //     $detail_data = $this->sph->det_sph($sph)->result();
-    //     $name = !empty($header_data) && isset($header_data[0]->no_sph) ? $header_data[0]->no_sph : $sph;
-    //     // $name = '123';
-    //     $data = [
-    //         'title' => $name,
-    //         'header_sph' => $header_data,
-    //         'det_sph' => $detail_data,
-    //     ];
-    //     // $name = $so;
-    //     $this->load->library('pdf');
-    //     $html = $this->load->view('sph/cetak_sph', $data, true);
-    //     $this->pdf->createPDF($html, $name, FALSE);
-    // }
-
-
 }
