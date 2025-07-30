@@ -30,10 +30,10 @@
 
                          <?php
                             $x = 1;
-                            foreach ($get_lot->result() as $row) { 
-                            $L_m2 = ($row->x_length * $row->x_width)/1000;
-                            $pemakaian = $L_m2 * $row->qty_lot;
-                            $sisa_pemakaian = $L_m2 - $pemakaian;
+                            foreach ($get_lot->result() as $row) {
+                                $L_m2 = ($row->x_length * $row->x_width) / 1000;
+                                $pemakaian = $L_m2 * $row->qty_lot;
+                                $sisa_pemakaian = $L_m2 - $pemakaian;
                             ?>
                              <tr>
                                  <td><?= $x++; ?></td>
@@ -42,7 +42,10 @@
                                  <!-- <td><?= number_format($pemakaian) ?></td>
                                  <td><?= number_format($sisa_pemakaian) ?></td> -->
                                  <td>
-                                     <button type="button" class="btn btn-primary" title="tracking OK"><i class="fa fa-list"></i></button>
+                                     <button type="button" class="btn btn-primary btn-detail-lot" data-id="<?= $row->id_lot ?>" title="Tracking OK">
+                                         <i class="fa fa-list"></i>
+                                     </button>
+
                                  </td>
                              </tr>
                          <?php } ?>
@@ -54,3 +57,20 @@
 
  </div>
  <!-- /.container-fluid -->
+
+ <!-- Modal -->
+ <div class="modal fade" id="lotDetailModal" tabindex="-1" role="dialog" aria-labelledby="lotDetailModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="lotDetailModalLabel">Detail Lot</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span>&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body" id="modal-lot-content">
+                 <!-- Data akan di-load di sini -->
+             </div>
+         </div>
+     </div>
+ </div>

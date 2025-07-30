@@ -116,6 +116,7 @@ class M_Plate extends CI_Model
         pp.id as pp_id,
         pp.barcode,
         spl.name as no_lot,
+        spl.id as id_lot,
         sum(sq.qty)  as qty_lot
       from
         product_template pt
@@ -132,5 +133,24 @@ class M_Plate extends CI_Model
       pp.id,
       pp.barcode,
       spl.name");
+  }
+
+  function get_lot_id($id) {
+    return $this->db->query("SELECT
+      spl.id,
+      spl.name as no_lot,
+      sml.quantity_done, 
+      sml.move_id, 
+      sml.lot_id,
+      sm.id, 
+      sm.origin, 
+      sm.product_qty, 
+      sm.location_id
+    from
+      stock_production_lot spl
+    join stock_move_lots sml on sml.lot_id = spl.id
+    join stock_move sm on sm.id = sml.move_id
+    where
+      spl.id = '$id' and sm.location_id = '23'");
   }
 }

@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Plate extends CI_Controller {
+class Plate extends CI_Controller
+{
 
     public function __construct()
     {
@@ -10,28 +11,29 @@ class Plate extends CI_Controller {
         // if ($this->session->userdata('status') == FALSE || $this->session->userdata('level') != 1) {
         //     redirect(base_url("login"));
         // }
-        $this->load->model('M_Plate','plate');
+        $this->load->model('M_Plate', 'plate');
     }
 
-	public function index()
-	{
+    public function index()
+    {
         $data = [
             'title' => 'Plate',
             'table_title' => 'Plate List',
             'conten' => 'plate/index',
             'footer_js' => array('assets/js/plate.js')
         ];
-		$this->load->view('template/conten',$data);
-	}
+        $this->load->view('template/conten', $data);
+    }
 
     function tablePlate()
     {
         $data['plate'] = $this->plate->getPlate()->result();
 
-        echo json_encode($this->load->view('plate/plate-table', $data,false));
+        echo json_encode($this->load->view('plate/plate-table', $data, false));
     }
 
-    function getLot($id) {
+    function getLot($id)
+    {
         $data = [
             'title' => 'Plate Lot',
             'table_name' => 'Plate Lot List',
@@ -39,8 +41,16 @@ class Plate extends CI_Controller {
             'get_lot' => $this->plate->get_plate_pldc($id),
             'footer_js' => array('assets/js/plate.js')
         ];
-        $this->load->view('template/conten',$data);
+        $this->load->view('template/conten', $data);
     }
+
+    public function get_lot_detail()
+    {
+        $id = $this->input->post('id');
+        $data['lot_detail'] = $this->plate->get_lot_id($id); // ganti "modelmu" dengan nama model kamu
+        $this->load->view('plate/detail/lot_detail_modal_view', $data); // view ini akan dirender ke modal
+    }
+
 
     // function tableDetailLot()
     // {
