@@ -108,34 +108,80 @@ class M_Plate extends CI_Model
 
   function get_plate_pldc($id)
   {
-    return $this->db->query("SELECT
-        pt.id,
-        pt.name as prod_tmpl,
-        pt.x_width,
-		    pt.x_length,
-        pp.id as pp_id,
-        pp.barcode,
-        spl.name as no_lot,
-        spl.id as id_lot,
-        sum(sq.qty)  as qty_lot
-      from
-        product_template pt
-      join product_product pp on
-        pp.product_tmpl_id = pt.id
-      join stock_production_lot spl on
-        spl.product_id = pp.id
-      join stock_quant sq on
-        sq.lot_id = spl.id
-      where pt.id = '$id' and sq.location_id in ('23','15')
-      group by 
-      pt.id,
-      pt.name,
+    return $this->db->query("WITH qty_done_per_lot AS (
+        SELECT
+            lot_id,
+            SUM(quantity_done) AS total_qty_done
+        FROM stock_move_lots
+        GROUP BY lot_id
+    )
+    select
+    	pt.id as prd_tmpl,
+    	pt.name as nama_produk,
       pp.id,
-      pp.barcode,
-      spl.name");
+      pp.default_code AS name,
+      sq.qty,
+      sq.location_id,
+      sl.name AS lokasi,
+      spl.id as id_lot,
+      spl.name AS no_lot,
+      COALESCE(qdl.total_qty_done, 0) AS pemakaian
+    FROM
+        product_product pp
+    join product_template pt on pt.id = pp.product_tmpl_id
+    JOIN stock_quant sq ON sq.product_id = pp.id
+    JOIN stock_location sl ON sl.id = sq.location_id
+    JOIN stock_production_lot spl ON spl.id = sq.lot_id
+    LEFT JOIN qty_done_per_lot qdl ON qdl.lot_id = spl.id
+    WHERE
+        pt.id = '$id'
+        AND sq.location_id IN ('23', '15')
+    GROUP BY 
+        pp.id,
+        pp.default_code,
+        sq.qty,
+        sq.location_id,
+        sl.name,
+        spl.name,
+        qdl.total_qty_done,
+        pt.name,
+        pt.id,
+        spl.id
+    ");
   }
 
-  function get_lot_id($id) {
+  // function get_plate_pldc($id)
+  // {
+  //   return $this->db->query("SELECT
+  //       pt.id,
+  //       pt.name as prod_tmpl,
+  //       pt.x_width,
+  // 	    pt.x_length,
+  //       pp.id as pp_id,
+  //       pp.barcode,
+  //       spl.name as no_lot,
+  //       spl.id as id_lot,
+  //       sum(sq.qty)  as qty_lot
+  //     from
+  //       product_template pt
+  //     join product_product pp on
+  //       pp.product_tmpl_id = pt.id
+  //     join stock_production_lot spl on
+  //       spl.product_id = pp.id
+  //     join stock_quant sq on
+  //       sq.lot_id = spl.id
+  //     where pt.id = '$id' and sq.location_id in ('23','15')
+  //     group by 
+  //     pt.id,
+  //     pt.name,
+  //     pp.id,
+  //     pp.barcode,
+  //     spl.name,
+  //     spl.id");
+  // }
+
+  function get_lot_id($id)
+  {
     return $this->db->query("SELECT
       spl.id,
       spl.name as no_lot,
