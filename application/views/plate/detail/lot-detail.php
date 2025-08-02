@@ -30,14 +30,16 @@
                          <?php
                             $x = 1;
                             foreach ($get_lot->result() as $row) {
-
+                                $panjang  = $row->panjang;
+                                $lebar = $row->lebar;
+                                $luas = ($panjang * $lebar)/100;
                             ?>
                              <tr>
                                  <td><?= $x++; ?></td>
                                  <td><?= $row->no_lot ?></td>
-                                 <td>QTY Awal (m2)</td>
-                                 <td><?= $row->pemakaian ?></td>
-                                 <td><?= $row->qty ?></td>
+                                 <td><?= number_format($luas,2) ?></td>
+                                 <td><?= number_format($row->pemakaian,2) ?></td>
+                                 <td><?= number_format(($row->qty == $row->pemakaian ? 0 : $row->qty), 2) ?></td>
                                  <td>
                                      <button type="button" class="btn btn-primary btn-detail-lot" data-id="<?= $row->id_lot ?>" title="Tracking OK">
                                          <i class="fa fa-list"></i>

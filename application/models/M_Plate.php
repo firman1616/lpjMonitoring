@@ -120,6 +120,8 @@ class M_Plate extends CI_Model
     	pt.name as nama_produk,
       pp.id,
       pp.default_code AS name,
+      pt.x_length as panjang,
+      pt.x_width as lebar,
       sq.qty,
       sq.location_id,
       sl.name AS lokasi,
@@ -191,11 +193,20 @@ class M_Plate extends CI_Model
       sm.id, 
       sm.origin, 
       sm.product_qty, 
-      sm.location_id
+      sm.location_id,
+      mp.x_type_mo,  
+      mp.origin as keterangan, 
+      mp.create_date,
+      mp.x_trial_produksi as status_ok,
+      mp.product_id,
+      pt.name as produk
     from
       stock_production_lot spl
     join stock_move_lots sml on sml.lot_id = spl.id
     join stock_move sm on sm.id = sml.move_id
+    join mrp_production mp on mp.name = sm.origin
+    join product_product pp on pp.id = mp.product_id
+    join product_template pt on pt.id = pp.product_tmpl_id
     where
       spl.id = '$id' and sm.location_id = '23'");
   }

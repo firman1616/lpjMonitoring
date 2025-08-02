@@ -1,19 +1,25 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Origin</th>
-            <th>Quantity Done</th>
-            <th>Product Qty</th>
-            <th>Location ID</th>
+            <th>No</th>
+            <th>No OK</th>
+            <th>Produk</th>
+            <th>Quantity (m2)</th>
+            <th>Tipe MO</th>
+            <th>Keterangan</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($lot_detail->result() as $row): ?>
+        <?php 
+        $x=1;
+        foreach ($lot_detail->result() as $row): ?>
         <tr>
+            <td><?= $x++; ?></td>
             <td><?= $row->origin ?></td>
-            <td><?= $row->quantity_done ?></td>
-            <td><?= $row->product_qty ?></td>
-            <td><?= $row->location_id ?></td>
+            <td><?= $row->produk ?></td>
+            <td><?= number_format($row->quantity_done,2) ?></td>
+            <td><?= $row->x_type_mo ?></td>
+            <td><?= $row->keterangan ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
