@@ -169,7 +169,7 @@ foreach ($header_sph as $row) {
             </tr>
             <tr>
                 <td align="center"><?= $sales ?> <br>Staff Marketing and Sales</td>
-                <td align="center">JANE LIDYA SUTJIONO <br> Marketing Manager</td>
+                <td align="center">_________________________________</td>
                 <td align="center">_________________________________</td>
             </tr>
         </tbody>
