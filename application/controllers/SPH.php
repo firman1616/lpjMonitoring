@@ -59,7 +59,7 @@ class SPH extends CI_Controller
             // 'default_font' => 'Arial',
         ]);
 
-        $logoPath = base_url('assets/img/lpjHalal.png');
+        $logoPath = base_url('assets/img/LPJ_halal.jpg');
 
 
         $mpdf->SetHTMLHeader('

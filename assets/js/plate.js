@@ -1,17 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function () {
     tablePlate();
     // tableDetailLot();
     $('#id').val('');
     $('#modulForm').trigger("reset");
 
-     $('.btn-detail-lot').on('click', function () {
+    $(document).on('click', '.btn-detail-lot', function () {
         const lotId = $(this).data('id');
+        // console.log("Klik tombol lot:", lotId);
 
         $.ajax({
             url: BASE_URL + "index.php/Plate/get_lot_detail",
             type: 'POST',
             data: { id: lotId },
             success: function (response) {
+                // console.log("Response diterima");
                 $('#modal-lot-content').html(response);
                 $('#lotDetailModal').modal('show');
             },
