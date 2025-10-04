@@ -22,6 +22,7 @@
                 <?php 
                 if ($row->x_customer == 'PT. AJINOMOTO INDONESIA') { ?>
                     <a href="<?= base_url('index.php/COA/cetak_coa_aji/'.$row->id) ?>" class="btn btn-warning" type="button" title="coa ajimonoto"><i class="fa fa-print"></i></a>
+                    <a href="#" class="btn btn-danger" type="button" title="coa ajimonoto 2"><i class="fa fa-print"></i></a>
                 <?php }
                 ?>
             </td>
