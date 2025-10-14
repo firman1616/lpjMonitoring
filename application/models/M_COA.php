@@ -62,6 +62,7 @@ class M_COA extends CI_Model
           xc.id,
           spl.name as no_lot,
           xcl.qty,
+          pu.name AS uom,
           TO_CHAR(mp.date_planned_start, 'YYYY-MM-DD') as tgl_produksi,
           TO_CHAR(mp.date_planned_start + INTERVAL '6 month', 'YYYY-MM-DD') as tgl_expired
     FROM
@@ -74,11 +75,14 @@ class M_COA extends CI_Model
         FROM mrp_production 
         ORDER BY x_barcode_ok, date_planned_start ASC
     ) mp ON mp.x_barcode_ok = substring(spl.name,1,7)
+    LEFT JOIN product_uom pu 
+    ON pu.id = spl.product_uom_id
     WHERE
           xc.id = '$coa'");
   }
 
-  function lot_aji($coa) {
+  function lot_aji($coa)
+  {
     return $this->db->query("WITH lot_data AS (
         SELECT 
             spl.name AS no_lot,
@@ -101,5 +105,18 @@ class M_COA extends CI_Model
         TO_CHAR(MIN(date_planned_start), 'YYYY-MM-DD') AS tgl_produksi,
         TO_CHAR(MIN(date_planned_start + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
     FROM lot_data");
+  }
+
+  function pl_header($id)
+  {
+    return $this->db->query("SELECT
+      xc.id,
+      xc.x_nama_barang,
+      xc.x_stock_id,
+      xc.x_tanggal_kirim 
+    from
+      x_coa xc
+    where
+      xc.id = '$id'");
   }
 }

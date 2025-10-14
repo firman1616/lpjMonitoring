@@ -69,17 +69,17 @@ class COA extends CI_Controller
         $this->pdf->createPDF($html, $name);
     }
 
-    public function cetak_pl_aji($coa)
+    public function cetak_pl_aji($id)
     {
-        $header_data = $this->coa->cetak_coa($coa)->result();
-        // $detail_data = $this->sph->det_sph($sph)->result();
+        $header_data = $this->coa->pl_header($id)->result();
+        $detail_data = $this->coa->det_coa($id)->result();
 
-        $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $coa;
+        $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $id;
 
         $data = [
             'title' => $name,
-            'header_sph' => $header_data,
-            // 'det_sph' => $detail_data,
+            'header' => $header_data,
+            'detail' => $detail_data,
         ];
 
         // Render HTML dari view
@@ -115,6 +115,6 @@ class COA extends CI_Controller
         $mpdf->WriteHTML($html);
 
         // Output ke browser
-        $mpdf->Output("PL_" . $name . ".pdf", 'I'); // 'I' = Inline (di-browser), 'D' = Download
+        $mpdf->Output("PL_" . $name . ".pdf", 'D'); // 'I' = Inline (di-browser), 'D' = Download
     }
 }
