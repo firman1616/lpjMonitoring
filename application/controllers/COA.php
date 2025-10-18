@@ -50,7 +50,63 @@ class COA extends CI_Controller
         $this->pdf->createPDF($html, $name);
     }
 
-    function cetak_coa_aji($coa)
+    public function cetak_coa_aji($coa)
+    {
+        $header_data = $this->coa->cetak_coa($coa)->result();
+        $detail_data = $this->coa->det_coa($coa)->result();
+
+        $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $coa;
+
+        $data = [
+            'title' => $name,
+            'header' => $header_data,
+            'detail' => $detail_data,
+        ];
+
+        // Render HTML dari view
+        $html = $this->load->view('coa/cetak_coa_aji', $data, true);
+
+        // Inisialisasi mPDF
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4',
+            'margin_top' => 28,
+            'margin_bottom' => 30,
+            // 'default_font' => 'Arial',
+        ]);
+
+        $logoPath = base_url('assets/img/lpjHeader.png');
+
+
+        $mpdf->SetHTMLHeader('
+        <div style="text-align: left; margin-bottom: 4px;">
+            <img 
+                src="' . $logoPath . '" 
+                alt="Logo" 
+                style="width: 330px; height: auto; margin-bottom: 2px;"
+            />
+        </div>
+        <hr style="border: 2px solid black; width: 100%; margin-top: 0px">
+        ');
+
+        $mpdf->SetHTMLFooter('
+            <div style="text-align: center; font-size: 11px;">
+                <hr style="border: none; border-top: 1px solid #000; margin-bottom: 5px;">
+                Office: Komplek Pergudangan Sinar Gedangan B-06 Ds. Gemurung - Gedangan<br>
+                Phone: +62 31 - 99038048, 99038054, 99038064 • Fax: +62 31 - 8011489<br>
+                Email: sales@laprintjaya.com • Website: http://www.laprintjaya.com
+            </div>
+        ');
+
+
+
+        // Tambahkan HTML ke PDF
+        $mpdf->WriteHTML($html);
+
+        // Output ke browser
+        $mpdf->Output("SPH_$name.pdf", 'I'); // 'I' = Inline (di-browser), 'D' = Download
+    }
+
+    function cetak_coa_aji_old($coa)
     {
         $header_data = $this->coa->cetak_coa($coa)->result();
         $detail_data = $this->coa->det_coa($coa)->result();
@@ -102,19 +158,12 @@ class COA extends CI_Controller
             </div>
         ');
 
-        // $mpdf->SetHTMLFooter('
-        //     <div style="text-align: center; font-size: 11px;">
-        //         <hr style="border: none; border-top: 1px solid #000; margin-bottom: 5px;">
-        //         Office: Komplek Pergudangan Sinar Gedangan B-06 Ds. Gemurung - Gedangan<br>
-        //         Phone: +62 31 - 99038048, 99038054, 99038064 • Fax: +62 31 - 8011489<br>
-        //         Email: sales@laprintjaya.com • Website: http://www.laprintjaya.com
-        //     </div>
-        // ');
-
         // Tambahkan HTML ke PDF
         $mpdf->WriteHTML($html);
 
         // Output ke browser
         $mpdf->Output("PL_" . $name . ".pdf", 'D'); // 'I' = Inline (di-browser), 'D' = Download
     }
+
+    
 }
