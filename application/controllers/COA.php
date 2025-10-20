@@ -109,7 +109,7 @@ class COA extends CI_Controller
         $mpdf->WriteHTML($html_page2);
 
         // Output ke browser
-        $mpdf->Output("COA_$name.pdf", 'I');
+        $mpdf->Output("$name.pdf", 'D');
     }
 
 
