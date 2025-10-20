@@ -54,6 +54,7 @@ class COA extends CI_Controller
     {
         $header_data = $this->coa->cetak_coa($coa)->result();
         $detail_data = $this->coa->det_coa($coa)->result();
+        $lot_aji = $this->coa->lot_aji($coa)->result();
 
         $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $coa;
 
@@ -61,6 +62,7 @@ class COA extends CI_Controller
             'title' => $name,
             'header' => $header_data,
             'detail' => $detail_data,
+            'lot' => $lot_aji
         ];
 
         // Render HTML dari view

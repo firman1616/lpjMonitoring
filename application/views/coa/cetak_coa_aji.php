@@ -1,43 +1,35 @@
-<!-- <style>
-    .tabel-penawaran {
-        margin-top: 10px;
-        font-size: 11px;
-        width: 100%;
-        border-collapse: collapse;
-    }
+<?php
+foreach ($header as $row) {
+    $coa = $row->name;
+    $cus = $row->x_customer;
+    $nama_barang = $row->x_nama_barang;
+    $po_cus = $row->x_po_customer;
+    $sjk = $row->no_sjk;
+    $jumlah = $row->x_jumlah;
+    $kode_mat = $row->x_kode_material;
+    $tgl_kirim = $row->x_tanggal_kirim;
+    $gramatur = $row->x_gramature;
+    $tiknes = $row->x_thickness;
+    $app = $row->x_apperance;
+    $warna = $row->x_colour;
+    $diecut = $row->x_diecut;
+    $lem = $row->x_glueing;
+    $panjang = $row->x_lenght;
+    $lebar = $row->x_width;
+    $shelf = $row->x_shelflife;
+    $user = $row->user;
+    $create = $row->create_date;
+    $ket = $row->x_keterangan;
+}
+?>
 
-    .tabel-penawaran th,
-    .tabel-penawaran td {
-        border: 1px solid black;
-        text-align: left;
-        vertical-align: top;
-        padding: 4px;
-    }
-
-    .tabel-penawaran th {
-        text-align: center;
-    }
-
-    .tabel-keterangan {
-        margin-top: 12px;
-        font-size: 12px;
-        font-weight: bold;
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .tabel-keterangan th,
-    .tabel-keterangan td {
-        border: 1px solid black;
-        text-align: left;
-        vertical-align: top;
-        padding: 4px;
-    }
-
-    .tabel-keterangan th {
-        text-align: center;
-    }
-</style> -->
+<?php
+foreach ($lot as $row) {
+    $a = $row->no_lot;
+    $b = $row->tgl_produksi;
+    $c = $row->tgl_expired;
+}
+?>
 
 <div style="page-break-inside: avoid;">
 
@@ -61,7 +53,7 @@
     <div style="text-align: center;">
         <span style="font-size: 20px;"><b>COA</b></span><br>
         <span style="font-size: 14px;"><u>Certificate of Analysis</u></span><br>
-        <span style="font-size: 12px;"><b>No : abc</b></span><br>
+        <span style="font-size: 12px;"><b>No : <?= $coa ?></b></span><br>
     </div>
     <br>
     <table width="100%" style="font-size:11px">
@@ -69,47 +61,47 @@
             <tr>
                 <td width="14%"><strong>Customer</strong></td>
                 <td width="2%" align="center" valign="middle">:</td>
-                <td width="26%">PT. Ajinomoto</td>
+                <td width="26%"><?= $cus ?></td>
                 <td width="21%">&nbsp;</td>
                 <td width="15%"><strong>No Po Customer</strong></td>
                 <td width="2%" align="center" valign="middle">:</td>
-                <td width="20%">4501041065</td>
+                <td width="20%"><?= $po_cus ?></td>
             </tr>
             <tr>
                 <td><strong>Nama Barang</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>Label TEB 135 ML G</td>
+                <td><?= $nama_barang ?></td>
                 <td>&nbsp;</td>
                 <td><strong>No SJK</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>WH/OUT/2510/02213</td>
+                <td><?= $sjk ?></td>
             </tr>
             <tr>
                 <td><strong>Tanggal Produksi</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>18/09/2025</td>
+                <td><?= date('d/m/Y', strtotime($b)) ?></td>
                 <td>&nbsp;</td>
                 <td><strong>Jumlah</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>6,000 pcs</td>
+                <td><?= number_format($jumlah) ?> pcs</td>
             </tr>
             <tr>
                 <td><strong>Tanggal Expired</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>18/09/2025</td>
+                <td><?= date('d/m/Y', strtotime($c)) ?></td>
                 <td>&nbsp;</td>
                 <td><strong>Kode Material</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>Sticker Art Paper</td>
+                <td><?= $kode_mat ?></td>
             </tr>
             <tr>
-                <td><strong>Tanggak Kirim</strong></td>
+                <td><strong>Tanggal Kirim</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>18/09/2025</td>
+                <td><?= date('d/m/Y', strtotime($tgl_kirim)) ?></td>
                 <td>&nbsp;</td>
                 <td><strong>No Batch</strong></td>
                 <td align="center" valign="middle">:</td>
-                <td>0383322-11 - 0383322-11</td>
+                <td><?= $a ?></td>
             </tr>
         </tbody>
     </table>
@@ -123,23 +115,23 @@
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">GRAMATURE</td>
-                <td>80.0 Gsm</td>
-                <td>&nbsp;</td>
+                <td><?= number_format($gramatur, 1) ?> gsm</td>
+                <td><?= number_format($gramatur, 1) ?> gsm</td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">THIKNESS</td>
-                <td>64 Mikron</td>
-                <td>&nbsp;</td>
+                <td><?= number_format($tiknes) ?> mikron</td>
+                <td><?= number_format($tiknes) ?> mikron</td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">LENGHT (+/-1 mm)</td>
-                <td>130 mm</td>
-                <td>&nbsp;</td>
+                <td><?= number_format($panjang) ?> mm</td>
+                <td><?= number_format($panjang) ?> mm</td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">WIDTH (+/-1 mm)</td>
-                <td>60.0 mm</td>
-                <td>&nbsp;</td>
+                <td><?= number_format($lebar, 1) ?> mm</td>
+                <td><?= number_format($lebar, 1) ?> mm</td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">
@@ -158,23 +150,23 @@
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">APPERANCE</td>
-                <td>good</td>
-                <td>&nbsp;</td>
+                <td><?= $app ?></td>
+                <td><?= $app ?></td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">COLOUR</td>
-                <td>good</td>
-                <td>&nbsp;</td>
+                <td><?= $warna ?></td>
+                <td><?= $warna ?></td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">DIECUT</td>
-                <td>good</td>
-                <td>&nbsp;</td>
+                <td><?= $diecut ?></td>
+                <td><?= $diecut ?></td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">SHELF LIFE (25C; 55% RH)</td>
-                <td>6 month</td>
-                <td>&nbsp;</td>
+                <td><?= $shelf ?> month</td>
+                <td><?= $shelf ?> month</td>
             </tr>
         </tbody>
     </table>
@@ -183,7 +175,7 @@
         <tbody>
             <tr>
                 <td width="70%">&nbsp;</td>
-                <td width="23%" align="center" valign="middle">Surabaya, 16 September 2025</td>
+                <td width="23%" align="center" valign="middle">Surabaya, <?= date('d/m/Y', strtotime($create)) ?></td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -192,7 +184,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td align="center" valign="middle">
-                    <b>user</b><br>
+                    <b><?= $user ?></b><br>
                     Quality Assurance
                 </td>
             </tr>
