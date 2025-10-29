@@ -152,8 +152,8 @@ foreach ($lot as $row) {
                 <td>
                     <p>&nbsp;</p>
                     <p><?= $ball_tack ?></p>
-                    <p><?= $ball_tack_weight ?></p>
-                    <p><?= $ball_tack_dia ?></p>
+                    <p><?= $ball_tack_weight ?> g</p>
+                    <p><?= $ball_tack_dia ?> mm</p>
             </td>
             </tr>
             <tr>

@@ -46,7 +46,10 @@ class M_COA extends CI_Model
       xc.x_shelflife,
       xc.create_uid,
       rp.name AS user,
-      xc.create_date
+      xc.create_date,
+      xc.x_ball_tack,
+      xc.x_ball_tack_weight,
+      xc.x_ball_tack_diameter
     from
       x_coa xc
     left join stock_picking sp on sp.id = xc.x_stock_id
