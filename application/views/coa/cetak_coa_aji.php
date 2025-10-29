@@ -20,6 +20,9 @@ foreach ($header as $row) {
     $user = $row->user;
     $create = $row->create_date;
     $ket = $row->x_keterangan;
+    $ball_tack = $row->x_ball_tack;
+    $ball_tack_weight = $row->x_ball_tack_weight;
+    $ball_tack_dia = $row->x_ball_tack_diameter;
 }
 ?>
 
@@ -146,7 +149,12 @@ foreach ($lot as $row) {
                     <p>2.497 g s/d 5.060 g</p>
                     <p>8.50 mm s/d 11.10mm</p>
                 </td>
-                <td>&nbsp;</td>
+                <td>
+                    <p>&nbsp;</p>
+                    <p><?= $ball_tack ?></p>
+                    <p><?= $ball_tack_weight ?></p>
+                    <p><?= $ball_tack_dia ?></p>
+            </td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">APPERANCE</td>
