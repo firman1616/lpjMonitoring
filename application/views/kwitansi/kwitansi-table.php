@@ -19,6 +19,7 @@
             <td><?= date('d-m-Y',strtotime($row->tgl_invoice)) ?></td>
             <td>
                 <a href="<?= base_url('index.php/Kwitansi/cetak_kwitansi/'.$row->id) ?>" class="btn btn-primary" title="cetak kwitansi"><i class="fa fa-print"></i></a>
+                 <a href="<?= base_url('index.php/Kwitansi/cetak_kwi/'.$row->id) ?>" class="btn btn-warning" title="cetak kwitansi 2"><i class="fa fa-print"></i></a>
             </td>
         </tr>
         <?php }
