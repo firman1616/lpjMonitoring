@@ -56,17 +56,27 @@ class Kwitansi extends CI_Controller
         $detail_data = $this->kwitansi->det_kwitansi($kwi)->result();
         $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $kwi;
 
-        // 🧮 Hitung nilai netto
         if (!empty($header_data)) {
             $bruto = $header_data[0]->total_untaxed;
-            $dpp_lain = 11 / 12 * $bruto;
-            $ppn12 = $dpp_lain * 12 / 100;
-            $netto = $bruto + $ppn12;
+            $faktur = $header_data[0]->faktur;
+            $kode_faktur = substr($faktur, 0, 3);
 
+            // 🧮 Cek kode faktur
+            if ($kode_faktur === '070') {
+                $dpp_lain = 0;
+                $ppn12 = 0;
+            } else {
+                $dpp_lain = 11 / 12 * $bruto;
+                $ppn12 = $dpp_lain * 12 / 100;
+            }
+
+            $netto = $bruto + $ppn12;
             $terbilang_nilai = ucfirst($this->terbilang($netto));
         } else {
             $netto = 0;
             $terbilang_nilai = "Nol rupiah";
+            $faktur = '';
+            $kode_faktur = '';
         }
 
         $data = [
@@ -75,34 +85,31 @@ class Kwitansi extends CI_Controller
             'detail' => $detail_data,
             'netto'  => $netto,
             'terbilang' => $terbilang_nilai,
+            'faktur_pajak' => $kode_faktur,
+            'dpp_lain2' => $dpp_lain,
+            'ppn122' => $ppn12,
         ];
 
         $html_page1 = $this->load->view('kwitansi/cetak_kwi', $data, true);
 
-         $mpdf = new \Mpdf\Mpdf([
-             'format' => 'Letter',
-             'margin_top' => 28,
-             'margin_bottom' => 30,
-         ]);
-
-        // $mpdf = new \Mpdf\Mpdf([
-        //     'format' => 'A5-L',
-        //     'margin_top' => 27,
-        //     'margin_left' => 3,
-        //     'margin_right' => 3,
-        // ]);
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'Letter',
+            'margin_top' => 28,
+            'margin_bottom' => 30,
+        ]);
 
         $logoPath = base_url('assets/img/lpjHeader.png');
         $mpdf->SetHTMLHeader('
-            <div style="text-align: left; margin-bottom: 4px;">
-                <img src="' . $logoPath . '" alt="Logo" style="width: 330px; height: auto; margin-bottom: 2px;" />
-            </div>
-            <hr style="border: 2px solid black; width: 100%; margin-top: 0px">
-        ');
+        <div style="text-align: left; margin-bottom: 4px;">
+            <img src="' . $logoPath . '" alt="Logo" style="width: 330px; height: auto; margin-bottom: 2px;" />
+        </div>
+        <hr style="border: 2px solid black; width: 100%; margin-top: 0px">
+    ');
 
         $mpdf->WriteHTML($html_page1);
-        $mpdf->Output("$name.pdf", 'D');
+        $mpdf->Output("$name.pdf", 'I');
     }
+
 
     private function terbilang_ribuan($n)
     {
