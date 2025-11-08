@@ -79,12 +79,18 @@ class Kwitansi extends CI_Controller
 
         $html_page1 = $this->load->view('kwitansi/cetak_kwi', $data, true);
 
-        $mpdf = new \Mpdf\Mpdf([
-            'format' => 'A5-L',
-            'margin_top' => 27,
-            'margin_left' => 3,
-            'margin_right' => 3,
-        ]);
+         $mpdf = new \Mpdf\Mpdf([
+             'format' => 'Letter',
+             'margin_top' => 28,
+             'margin_bottom' => 30,
+         ]);
+
+        // $mpdf = new \Mpdf\Mpdf([
+        //     'format' => 'A5-L',
+        //     'margin_top' => 27,
+        //     'margin_left' => 3,
+        //     'margin_right' => 3,
+        // ]);
 
         $logoPath = base_url('assets/img/lpjHeader.png');
         $mpdf->SetHTMLHeader('
@@ -95,7 +101,7 @@ class Kwitansi extends CI_Controller
         ');
 
         $mpdf->WriteHTML($html_page1);
-        $mpdf->Output("$name.pdf", 'I');
+        $mpdf->Output("$name.pdf", 'D');
     }
 
     private function terbilang_ribuan($n)
