@@ -2,14 +2,14 @@
 foreach ($header as $row) {
     $no_kwi = $row->no_kwitansi;
     $customer = $row->customer;
-    $terbilang = $row->amount_to_text;
+    // $terbilang = $row->amount_to_text;
     $faktur = $row->faktur;
     $invoice_date = $row->list_date_invoice;
     $sjk = $row->no_sjk;
     $bruto = $row->total_untaxed;
     $dpp_lain = 11 / 12 * $bruto;
     $ppn12 = $dpp_lain * 12 / 100;
-    $netto = $bruto + $ppn12;
+    // $netto = $bruto + $ppn12;
     $jalan = $row->street;
     $tgl_invoice = $row->tgl_invoice;
 }
@@ -112,7 +112,7 @@ foreach ($header as $row) {
             </tr>
             <tr>
                 <td>DPP Nilai Lain</td>
-                <td align="right">Rp. <?= number_format($dpp_lain, 2) ?></td>
+                <td align="right">Rp. <?= number_format($dpp_lain, 2) ?><br></td>
             </tr>
             <tr>
                 <td>PPN 12%</td>
