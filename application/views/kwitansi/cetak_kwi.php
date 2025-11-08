@@ -88,7 +88,7 @@ foreach ($header as $row) {
                 <td width="20%">&nbsp;</td>
                 <td width="7%" valign="top"><strong>Untuk Pembayaran</strong></td>
                 <td width="1%" valign="top"><strong>:</strong></td>
-                <td width="39%" valign="top"><?= $faktur ?> <?= $invoice_date ?> <br><?= $faktur_pajak ?></td>
+                <td width="39%" valign="top"><?= $faktur ?> <?= $invoice_date ?></td>
             </tr>
             <tr>
                 <td colspan="5"><strong>SJ Keluar : </strong><?= $sjk ?></td>
@@ -112,11 +112,11 @@ foreach ($header as $row) {
             </tr>
             <tr>
                 <td>DPP Nilai Lain</td>
-                <td align="right">Rp. <?= number_format($dpp_lain2, 2) ?><br></td>
+                <td align="right">Rp. <?= number_format($dpp_lain, 2) ?><br></td>
             </tr>
             <tr>
                 <td>PPN 12%</td>
-                <td align="right">Rp. <?= number_format($ppn122, 2) ?></td>
+                <td align="right">Rp. <?= number_format($ppn12, 2) ?></td>
             </tr>
             <tr>
                 <td><strong>Netto</strong></td>
