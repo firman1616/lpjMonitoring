@@ -23,6 +23,9 @@ foreach ($header as $row) {
     $ball_tack = $row->x_ball_tack;
     $ball_tack_weight = $row->x_ball_tack_weight;
     $ball_tack_dia = $row->x_ball_tack_diameter;
+    $gap = $row->x_gap;
+    $amount_roll = $row->x_amount_pcs_roll;
+    $w_roll = $row->x_w_roll_bruto;
 }
 ?>
 
@@ -62,9 +65,9 @@ foreach ($lot as $row) {
     <table width="100%" style="font-size:11px">
         <tbody>
             <tr>
-                <td width="14%"><strong>Customer</strong></td>
+                <td width="16%"><strong>Customer</strong></td>
                 <td width="2%" align="center" valign="middle">:</td>
-                <td width="26%"><?= $cus ?></td>
+                <td width="24%"><?= $cus ?></td>
                 <td width="21%">&nbsp;</td>
                 <td width="15%"><strong>No Po Customer</strong></td>
                 <td width="2%" align="center" valign="middle">:</td>
@@ -127,59 +130,65 @@ foreach ($lot as $row) {
                 <td><?= number_format($tiknes) ?> mikron</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">LENGHT (+/-1 mm)</td>
-                <td><?= number_format($panjang) ?> mm</td>
-                <td><?= number_format($panjang) ?> mm</td>
+                <td height="35" align="left" valign="middle">SIZE</td>
+                <td><?= number_format($lebar) ?> x <?= number_format($panjang) ?> &plusmn; 1.2 mm roving (diecut position)</td>
+                <td><?= number_format($lebar) ?> x <?= number_format($panjang) ?> mm</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">WIDTH (+/-1 mm)</td>
-                <td><?= number_format($lebar, 1) ?> mm</td>
-                <td><?= number_format($lebar, 1) ?> mm</td>
+                <td height="35" align="left" valign="middle">GAP DISTANCE</td>
+                <td>3,00 - 6,10 mm</td>
+                <td><?= $gap ?> mm</td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">
-                    <p>ADHESIVE</p>
-                    <p>NO BALL TACK :</p>
-                    <p>BALL TACK WIGHT :</p>
-                    <p>BALL TACK DIAMETER</p>
+                    <p>ID CORE (Inner Diameter Core)</p>
                 </td>
+                <td>76,2 &plusmn; 1 mm</td>
                 <td>
-                    <p>&nbsp;</p>
-                    <p>12 s/d 16</p>
-                    <p>2.497 g s/d 5.060 g</p>
-                    <p>8.50 mm s/d 11.10mm</p>
-                </td>
-                <td>
-                    <p>&nbsp;</p>
-                    <p><?= $ball_tack ?></p>
-                    <p><?= $ball_tack_weight ?> g</p>
-                    <p><?= $ball_tack_dia ?> mm</p>
-            </td>
+              <p>76,2 mm</p></td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">APPERANCE</td>
-                <td><?= $app ?></td>
-                <td><?= $app ?></td>
+                <td height="35" align="left" valign="middle">AMOUNT Pcs/Roll</td>
+                <td><?= $amount_roll ?> pcs &plusmn; 3%</td>
+                <td><?= $amount_roll ?> pcs</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">COLOUR</td>
-                <td><?= $warna ?></td>
-                <td><?= $warna ?></td>
+                <td height="35" align="left" valign="middle">OD CORE (Outer Diameter Core)</td>
+                <td>310 mm &plusmn; 3%</td>
+                <td>310 mm</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">DIECUT</td>
-                <td><?= $diecut ?></td>
-                <td><?= $diecut ?></td>
+                <td height="35" align="left" valign="middle">WEIGHT ROLL BRUTO</td>
+                <td><?= $w_roll ?> Kg &plusmn; 5%</td>
+                <td><?= $w_roll ?> Kg</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">SHELF LIFE (25C; 55% RH)</td>
-                <td><?= $shelf ?> month</td>
-                <td><?= $shelf ?> month</td>
+                <td height="35" align="left" valign="middle">CORE LENGTH</td>
+                <td>64 &plusmn; 5mm </td>
+                <td>64 mm</td>
+            </tr>
+			<tr>
+                <td height="35" align="left" valign="middle">AMOUNT OF JOIN</td>
+                <td>5</td>
+                <td>0 - 3</td>
+            </tr>
+			<tr>
+                <td height="35" align="left" valign="middle">LABEL POSITION</td>
+                <td>midle core length &plusmn; 3 mm</td>
+                <td>Good</td>
+            </tr>
+			<tr>
+                <td height="35" align="left" valign="middle">LABEL ROLL CONDITION</td>
+                <td><p>Roll neatly</p>
+                <p>condition zig zag</p>
+                <p>Label Roll Max &plusmn; 3 mm</p>
+                <p>(right &amp; left &plusmn; 1.5 mm)</p></td>
+                <td>Roll Neatly</td>
             </tr>
         </tbody>
     </table>
 
-    <table width="100%" style="font-size:12px; margin-top:10px">
+    <table width="100%" style="font-size:12px; margin-top:5px">
         <tbody>
             <tr>
                 <td width="70%">&nbsp;</td>
@@ -187,7 +196,7 @@ foreach ($lot as $row) {
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                <td height="65">&nbsp;</td>
+                <td height="45">&nbsp;</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
