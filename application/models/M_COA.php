@@ -104,14 +104,40 @@ class M_COA extends CI_Model
             ORDER BY x_barcode_ok, date_planned_start ASC
         ) mp ON mp.x_barcode_ok = substring(spl.name, 1, 7)
         WHERE xc.id = '$coa'
-    )
-    SELECT
-        (SELECT no_lot FROM lot_data ORDER BY lot_number ASC LIMIT 1) || ' - ' ||
-        (SELECT no_lot FROM lot_data ORDER BY lot_number DESC LIMIT 1) AS no_lot,
-        TO_CHAR(MIN(date_planned_start), 'YYYY-MM-DD') AS tgl_produksi,
-        TO_CHAR(MIN(date_planned_start + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
-    FROM lot_data");
+        )
+        SELECT
+            STRING_AGG(no_lot, ', ' ORDER BY lot_number ASC) AS no_lot,
+            TO_CHAR(MIN(date_planned_start), 'YYYY-MM-DD') AS tgl_produksi,
+            TO_CHAR(MIN(date_planned_start + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
+        FROM lot_data;
+        ");
   }
+
+  // function lot_aji($coa)
+  // {
+  //   return $this->db->query("WITH lot_data AS (
+  //       SELECT 
+  //           spl.name AS no_lot,
+  //           CAST(SUBSTRING(spl.name FROM '[0-9]+$') AS INTEGER) AS lot_number,
+  //           mp.date_planned_start
+  //       FROM x_coa xc
+  //       LEFT JOIN x_coa_line xcl ON xcl.coa_id = xc.id
+  //       LEFT JOIN stock_production_lot spl ON spl.id = xcl.lot_id
+  //       LEFT JOIN (
+  //           SELECT DISTINCT ON (x_barcode_ok) 
+  //               x_barcode_ok, date_planned_start 
+  //           FROM mrp_production 
+  //           ORDER BY x_barcode_ok, date_planned_start ASC
+  //       ) mp ON mp.x_barcode_ok = substring(spl.name, 1, 7)
+  //       WHERE xc.id = '$coa'
+  //   )
+  //   SELECT
+  //       (SELECT no_lot FROM lot_data ORDER BY lot_number ASC LIMIT 1) || ' - ' ||
+  //       (SELECT no_lot FROM lot_data ORDER BY lot_number DESC LIMIT 1) AS no_lot,
+  //       TO_CHAR(MIN(date_planned_start), 'YYYY-MM-DD') AS tgl_produksi,
+  //       TO_CHAR(MIN(date_planned_start + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
+  //   FROM lot_data");
+  // }
 
   function pl_header($id)
   {

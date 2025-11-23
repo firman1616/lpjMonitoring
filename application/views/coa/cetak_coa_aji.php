@@ -105,9 +105,9 @@ foreach ($lot as $row) {
                 <td align="center" valign="middle">:</td>
                 <td><?= date('d/m/Y', strtotime($tgl_kirim)) ?></td>
                 <td>&nbsp;</td>
-                <td><strong>No Batch</strong></td>
-                <td align="center" valign="middle">:</td>
-                <td><?= $a ?></td>
+                <td>&nbsp;</td>
+                <td align="center" valign="middle">&nbsp;</td>
+                <td>&nbsp;</td>
             </tr>
         </tbody>
     </table>
@@ -120,65 +120,65 @@ foreach ($lot as $row) {
                 <td width="36%"><strong>RESULT</strong></td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">GRAMATURE</td>
+                <td height="35" align="left" valign="middle"><strong>GRAMATURE</strong></td>
                 <td><?= number_format($gramatur, 1) ?> gsm</td>
                 <td><?= number_format($gramatur, 1) ?> gsm</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">THIKNESS</td>
+                <td height="35" align="left" valign="middle"><strong>THIKNESS</strong></td>
                 <td><?= number_format($tiknes) ?> mikron</td>
                 <td><?= number_format($tiknes) ?> mikron</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">SIZE</td>
+                <td height="35" align="left" valign="middle"><strong>SIZE</strong></td>
                 <td><?= number_format($lebar) ?> x <?= number_format($panjang) ?> &plusmn; 1.2 mm roving (diecut position)</td>
                 <td><?= number_format($lebar) ?> x <?= number_format($panjang) ?> mm</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">GAP DISTANCE</td>
+                <td height="35" align="left" valign="middle"><strong>GAP DISTANCE</strong></td>
                 <td>3,00 - 6,10 mm</td>
                 <td><?= $gap ?> mm</td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle">
-                    <p>ID CORE (Inner Diameter Core)</p>
+                    <p><strong>ID CORE (Inner Diameter Core)</strong></p>
                 </td>
                 <td>76,2 &plusmn; 1 mm</td>
                 <td>
               <p>76,2 mm</p></td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">AMOUNT Pcs/Roll</td>
+                <td height="35" align="left" valign="middle"><strong>AMOUNT Pcs/Roll</strong></td>
                 <td><?= $amount_roll ?> pcs &plusmn; 3%</td>
                 <td><?= $amount_roll ?> pcs</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">OD CORE (Outer Diameter Core)</td>
+                <td height="35" align="left" valign="middle"><strong>OD CORE (Outer Diameter Core)</strong></td>
                 <td>310 mm &plusmn; 3%</td>
                 <td>310 mm</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">WEIGHT ROLL BRUTO</td>
+                <td height="35" align="left" valign="middle"><strong>WEIGHT ROLL BRUTO</strong></td>
                 <td><?= $w_roll ?> Kg &plusmn; 5%</td>
                 <td><?= $w_roll ?> Kg</td>
             </tr>
             <tr>
-                <td height="35" align="left" valign="middle">CORE LENGTH</td>
+                <td height="35" align="left" valign="middle"><strong>CORE LENGTH</strong></td>
                 <td>64 &plusmn; 5mm </td>
                 <td>64 mm</td>
             </tr>
 			<tr>
-                <td height="35" align="left" valign="middle">AMOUNT OF JOIN</td>
+                <td height="35" align="left" valign="middle"><strong>AMOUNT OF JOIN</strong></td>
                 <td>5</td>
                 <td>0 - 3</td>
             </tr>
 			<tr>
-                <td height="35" align="left" valign="middle">LABEL POSITION</td>
+                <td height="35" align="left" valign="middle"><strong>LABEL POSITION</strong></td>
                 <td>midle core length &plusmn; 3 mm</td>
                 <td>Good</td>
             </tr>
 			<tr>
-                <td height="35" align="left" valign="middle">LABEL ROLL CONDITION</td>
+                <td height="35" align="left" valign="middle"><strong>LABEL ROLL CONDITION</strong></td>
                 <td><p>Roll neatly</p>
                 <p>condition zig zag</p>
                 <p>Label Roll Max &plusmn; 3 mm</p>
@@ -191,14 +191,17 @@ foreach ($lot as $row) {
     <table width="100%" style="font-size:12px; margin-top:5px">
         <tbody>
             <tr>
-                <td width="70%">&nbsp;</td>
-                <td width="23%" align="center" valign="middle">Surabaya, <?= date('d/m/Y', strtotime($create)) ?></td>
+				<td width="45%"><strong>No Lot :</strong></td>
+                <td width="30%">&nbsp;</td>
+                <td width="25%" align="center" valign="middle">Surabaya, <?= date('d/m/Y', strtotime($create)) ?></td>
             </tr>
             <tr>
+				<td width="45%" align="left" valign="top"><?= $a ?></td>
                 <td>&nbsp;</td>
                 <td height="45">&nbsp;</td>
             </tr>
             <tr>
+				<td width="45%">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td align="center" valign="middle">
                     <b><?= $user ?></b><br>
