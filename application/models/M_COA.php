@@ -69,8 +69,8 @@ class M_COA extends CI_Model
           spl.name as no_lot,
           xcl.qty,
           pu.name AS uom,
-          TO_CHAR(mp.date_planned_start, 'YYYY-MM-DD') as tgl_produksi,
-          TO_CHAR(mp.date_planned_start + INTERVAL '6 month', 'YYYY-MM-DD') as tgl_expired
+          TO_CHAR(spl.create_date, 'YYYY-MM-DD') as tgl_produksi,
+          TO_CHAR(spl.create_date + INTERVAL '6 month', 'YYYY-MM-DD') as tgl_expired
     FROM
           x_coa xc
     LEFT JOIN x_coa_line xcl ON xcl.coa_id = xc.id
@@ -108,8 +108,8 @@ class M_COA extends CI_Model
       )
       SELECT
           STRING_AGG(no_lot, ', ' ORDER BY lot_number ASC) AS no_lot,
-          TO_CHAR(MIN(date_planned_start), 'YYYY-MM-DD') AS tgl_produksi,
-          TO_CHAR(MIN(date_planned_start + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
+          TO_CHAR(MIN(create_date), 'YYYY-MM-DD') AS tgl_produksi,
+          TO_CHAR(MIN(create_date + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
       FROM lot_data;
       ");
   }
