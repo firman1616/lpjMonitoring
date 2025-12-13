@@ -191,17 +191,17 @@ foreach ($lot as $row) {
     <table width="100%" style="font-size:12px; margin-top:5px">
         <tbody>
             <tr>
-				<td width="45%"><strong>No Lot :</strong></td>
-                <td width="30%">&nbsp;</td>
+				<td width="69%"><strong>No Lot :</strong></td>
+                <td width="6%">&nbsp;</td>
                 <td width="25%" align="center" valign="middle">Surabaya, <?= date('d/m/Y', strtotime($create)) ?></td>
             </tr>
             <tr>
-				<td width="45%" align="left" valign="top"><?= $a ?></td>
+				<td width="69%" align="left" valign="top"><?= $a ?></td>
                 <td>&nbsp;</td>
                 <td height="45">&nbsp;</td>
             </tr>
             <tr>
-				<td width="45%">&nbsp;</td>
+				<td width="69%">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td align="center" valign="middle">
                     <b><?= $user ?></b><br>

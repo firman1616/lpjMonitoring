@@ -108,9 +108,9 @@ class M_COA extends CI_Model
       )
       SELECT
           STRING_AGG(no_lot, ', ' ORDER BY lot_number ASC) AS no_lot,
-          TO_CHAR(MIN(create_date), 'YYYY-MM-DD') AS tgl_produksi,
-          TO_CHAR(MIN(create_date + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
-      FROM lot_data;;
+          TO_CHAR(MIN(date_planned_start), 'YYYY-MM-DD') AS tgl_produksi,
+          TO_CHAR(MIN(date_planned_start + INTERVAL '6 month'), 'YYYY-MM-DD') AS tgl_expired
+      FROM lot_data;
       ");
   }
 
