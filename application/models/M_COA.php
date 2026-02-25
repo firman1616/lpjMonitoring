@@ -52,7 +52,9 @@ class M_COA extends CI_Model
       xc.x_ball_tack_diameter,
       xc.x_gap, 
       xc.x_amount_pcs_roll,
-      xc.x_w_roll_bruto
+      xc.x_w_roll_bruto,
+      xc.x_std_thickness,
+      xc.x_std_gramature
     from
       x_coa xc
     left join stock_picking sp on sp.id = xc.x_stock_id

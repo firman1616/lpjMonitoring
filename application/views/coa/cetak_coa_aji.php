@@ -26,6 +26,8 @@ foreach ($header as $row) {
     $gap = $row->x_gap;
     $amount_roll = $row->x_amount_pcs_roll;
     $w_roll = $row->x_w_roll_bruto;
+    $std_thiknes = $row->x_std_thickness;
+    $std_gramatur = $row->x_std_gramature;
 }
 ?>
 
@@ -121,12 +123,12 @@ foreach ($lot as $row) {
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle"><strong>GRAMATURE</strong></td>
-                <td><?= number_format($gramatur, 1) ?> gsm</td>
+                <td><?= $std_gramatur ?> gsm</td>
                 <td><?= number_format($gramatur, 1) ?> gsm</td>
             </tr>
             <tr>
                 <td height="35" align="left" valign="middle"><strong>THIKNESS</strong></td>
-                <td><?= number_format($tiknes) ?> mikron</td>
+                <td><?= $std_thiknes ?> mikron</td>
                 <td><?= number_format($tiknes) ?> mikron</td>
             </tr>
             <tr>
