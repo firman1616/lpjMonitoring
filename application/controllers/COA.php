@@ -171,4 +171,66 @@ class COA extends CI_Controller
         // Output ke browser
         $mpdf->Output("PL_" . $name . ".pdf", 'D'); // 'I' = Inline (di-browser), 'D' = Download
     }
+
+    public function cetak_coa_otsuka($coa)
+    {
+        $header_data = $this->coa->cetak_coa($coa)->result();
+        $detail_data = $this->coa->det_coa($coa)->result();
+        $lot_aji = $this->coa->lot_aji($coa)->result();
+
+        $name = !empty($header_data) && isset($header_data[0]->name) ? $header_data[0]->name : $coa;
+
+        $data = [
+            'title' => $name,
+            'header' => $header_data,
+            'detail' => $detail_data,
+            'lot' => $lot_aji
+        ];
+
+        // Render HTML dari view utama (halaman 1)
+        $html_page1 = $this->load->view('coa/cetak_coa_otsuka', $data, true);
+
+        // Render HTML dari view lampiran (halaman 2)
+        // $html_page2 = $this->load->view('coa/cetak_coa_aji_lampiran', $data, true);
+
+        // Inisialisasi mPDF
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4',
+            'margin_top' => 28,
+            'margin_bottom' => 30,
+        ]);
+
+        $logoPath = base_url('assets/img/lpjHeader.png');
+
+        // Header & Footer
+        $mpdf->SetHTMLHeader('
+        <div style="text-align: left; margin-bottom: 4px;">
+            <img 
+                src="' . $logoPath . '" 
+                alt="Logo" 
+                style="width: 330px; height: auto; margin-bottom: 2px;"
+            />
+        </div>
+        <hr style="border: 2px solid black; width: 100%; margin-top: 0px">
+    ');
+
+        $mpdf->SetHTMLFooter('
+        <div style="text-align: center; font-size: 11px;">
+            <hr style="border: none; border-top: 1px solid #000; margin-bottom: 5px;">
+            Office: Komplek Pergudangan Sinar Gedangan B-06 Ds. Gemurung - Gedangan<br>
+            Phone: +62 31 - 99038048, 99038054, 99038064 • Fax: +62 31 - 8011489<br>
+            Email: sales@laprintjaya.com • Website: http://www.laprintjaya.com
+        </div>
+    ');
+
+        // Tambahkan halaman 1
+        $mpdf->WriteHTML($html_page1);
+
+        // Tambahkan halaman 2 (lampiran)
+        // $mpdf->AddPage();
+        // $mpdf->WriteHTML($html_page2);
+
+        // Output ke browser
+        $mpdf->Output("$name.pdf", 'I');
+    }
 }

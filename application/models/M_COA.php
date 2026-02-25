@@ -54,7 +54,8 @@ class M_COA extends CI_Model
       xc.x_amount_pcs_roll,
       xc.x_w_roll_bruto,
       xc.x_std_thickness,
-      xc.x_std_gramature
+      xc.x_std_gramature,
+      xc.x_manufacturing_date
     from
       x_coa xc
     left join stock_picking sp on sp.id = xc.x_stock_id

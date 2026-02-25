@@ -23,6 +23,8 @@
                 if ($row->x_customer == 'PT. AJINOMOTO INDONESIA') { ?>
                     <a href="<?= base_url('index.php/COA/cetak_coa_aji/'.$row->id) ?>" class="btn btn-warning" type="button" title="coa ajimonoto"><i class="fa fa-print"></i></a>
                     <a href="<?= base_url('index.php/COA/cetak_pl_aji/'.$row->id) ?>" class="btn btn-danger" type="button" title="coa ajimonoto 2"><i class="fa fa-print"></i></a>
+                <?php }elseif ($row->x_customer == 'PT. OTSUKA INDONESIA') { ?>
+                    <a href="<?= base_url('index.php/COA/cetak_coa_otsuka/'.$row->id) ?>" class="btn btn-success" type="button" title="coa otsuka"><i class="fa fa-print"></i></a>
                 <?php }
                 ?>
             </td>
