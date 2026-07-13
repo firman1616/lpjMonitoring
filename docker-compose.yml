@@ -1,0 +1,38 @@
+services:
+  # PHP Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lpj-app
+    restart: no
+    volumes:
+      - .:/var/www/html
+    command: >
+      sh -c "
+      mkdir -p /var/www/html/application/cache/sessions &&
+      chown -R www-data:www-data /var/www/html/application/cache &&
+      chmod -R 755 /var/www/html/application/cache &&
+      php-fpm
+      "
+    networks:
+      - proyek-network
+
+  # Nginx Web Server
+  web:
+    image: nginx:alpine
+    container_name: lpj-web
+    restart: no
+    ports:
+      - "8006:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - proyek-network
+
+networks:
+  proyek-network:
+    external: true
